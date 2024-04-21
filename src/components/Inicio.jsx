@@ -21,9 +21,11 @@ function Inicio() {
     }
 
     function entrar() {
-        const autent = autCtx.setaLoja(selecao);
-        if (autent) {
-            navigate("/inicial")
+        if (selecao > 0) {
+            const autent = autCtx.setaLoja(selecao);
+            if(autent){
+                navigate("/inicial")
+            }
         }
     }
     
@@ -46,16 +48,16 @@ function Inicio() {
                 />
             </Figure>
             <ModalTitle>Seleciona a Loja para continuar</ModalTitle>
-            <Form.Select size="lg" onChange={setaOpcao}>
+            <Form.Select size="lg" className="mb-2" onChange={setaOpcao}>
                 <option>Selecione...</option>
                 {lojas.map(loja => (
                     <option value={loja.id}>{loja.nome}</option>)
                 )}
             </Form.Select>
-            <Button variant="primary" onClick={() => entrar()}>
+            <Button variant="primary" className="mb-2" onClick={() => entrar()}>
                 Confirmar
             </Button>
-            <Button variant="primary" onClick={() => novaLoja()}>
+            <Button variant="primary" className="mb-2" onClick={() => novaLoja()}>
                 Nova Loja
             </Button>
         </Container>

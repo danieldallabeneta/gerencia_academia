@@ -9,9 +9,10 @@ export default function Alunos() {
     const navigate = useNavigate();
     useEffect(() => atualizarAlunos(), []);
     const autCtx = useAutCtx();
+    const loja = autCtx.lojaId;
 
     function atualizarAlunos() {
-        obterAlunosApi(autCtx.id)
+        obterAlunosApi(loja)
             .then((resposta) => {
                 setAlunos(resposta.data);
             })
