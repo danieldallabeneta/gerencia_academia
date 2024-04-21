@@ -234,8 +234,8 @@ function CadastroAluno() {
             quemInformou:quemInformou
         };
 
-        /* await registerAlunoApi(aluno);
-        resetCampos(); */
+        await registerAlunoApi(aluno);
+        resetCampos();
     }
 
     function resetCampos() {
