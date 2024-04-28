@@ -6,6 +6,8 @@ import Inicial from "./components/Inicial";
 import CadastroLoja from "./components/CadastroLoja";
 import Alunos from "./components/Alunos";
 import CadastroAluno from "./components/CadastroAluno";
+import CadastroProfissional from "./components/CadastroProfissional";
+import Profissionais from "./components/Profissionais";
 
 function HomePage(){
 
@@ -27,6 +29,8 @@ function HomePage(){
                     <Route path="/loja/cadastro" element={<CadastroLoja />}></Route>
                     <Route path="/alunos" element={<Alunos />}></Route>
                     <Route path="/aluno/cadastro" element={<CadastroAluno />}></Route>
+                    <Route path="/professor" element={<Profissionais />}></Route>
+                    <Route path="/professor/cadastro" element={<CadastroProfissional />}></Route>
                 </Routes>
             </BrowserRouter>
         </AutProvider>

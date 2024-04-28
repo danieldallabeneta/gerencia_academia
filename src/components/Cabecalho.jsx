@@ -32,8 +32,8 @@ function Cabecalho() {
                   </Link>)}
                 </li>
                 <li className="nav=item">
-                  {selecionado && nome && (<Link className="nav-link" to="/administrador">
-                      <a>Administrador</a>
+                  {selecionado && nome && (<Link className="nav-link" to="/professor">
+                      <a>Professor</a>
                     </Link>)}
                 </li>
               </ul>

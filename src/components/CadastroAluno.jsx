@@ -289,7 +289,7 @@ function CadastroAluno() {
                         </FormGroup>
                         <FormGroup as={Col} className="mb-2" controlId="formGridDataNascimento">
                             <Form.Label>Data de Nascimento</Form.Label>
-                            <Form.Control type="date" placeholder="E-mail" value={dataNascimento} onChange={handlerDataNascimento} />
+                            <Form.Control type="date" value={dataNascimento} onChange={handlerDataNascimento} />
                         </FormGroup>
                         <FormGroup as={Col} className="mb-2" controlId="formGridSexo">
                             <Form.Label>Sexo</Form.Label>
@@ -346,11 +346,10 @@ function CadastroAluno() {
                     <FormGroup as={Col} controlId="formGridCEP">
                         <Form.Label>CEP</Form.Label>
                         <InputMask mask="99999-999" maskChar="_" alwaysShowMask={true} className="form-control" value={cep} onChange={handlerCep} />
-                        {/* <Form.Control type="integer" placeholder="CEP" value={cepResi} onChange={handlerCepResi} /> */}
                     </FormGroup>
                     <FormGroup as={Col} controlId="formGridUF">
                         <Form.Label>UF</Form.Label>
-                        <Form.Control type="text" placeholder="UF" value={uf} onChange={handlerUF} />
+                        <InputMask mask="aa" value={uf} onChange={handlerUF} maskChar={null} className="form-control"/>                          
                     </FormGroup>
                 </Row>
             </div>
@@ -444,6 +443,5 @@ function CadastroAluno() {
         </Form >
     );
 }
-
 
 export default CadastroAluno;
