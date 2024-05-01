@@ -8,6 +8,8 @@ import Alunos from "./components/Alunos";
 import CadastroAluno from "./components/CadastroAluno";
 import CadastroProfissional from "./components/CadastroProfissional";
 import Profissionais from "./components/Profissionais";
+import CadastroEquipamento from "./components/CadastroEquipamento";
+import Equipamentos from "./components/Equipamentos";
 
 function HomePage(){
 
@@ -30,6 +32,8 @@ function HomePage(){
                     <Route path="/alunos" element={<Alunos />}></Route>
                     <Route path="/aluno/cadastro" element={<CadastroAluno />}></Route>
                     <Route path="/professor" element={<Profissionais />}></Route>
+                    <Route path="/equipamento" element={<Equipamentos />}></Route>
+                    <Route path="/equipamento/cadastro" element={<CadastroEquipamento />}></Route>
                     <Route path="/professor/cadastro" element={<CadastroProfissional />}></Route>
                 </Routes>
             </BrowserRouter>

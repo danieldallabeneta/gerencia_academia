@@ -36,6 +36,11 @@ function Cabecalho() {
                       <a>Professor</a>
                     </Link>)}
                 </li>
+                <li className="nav=item">
+                  {selecionado && nome && (<Link className="nav-link" to="/equipamento">
+                      <a>Equipamentos</a>
+                    </Link>)}
+                </li>
               </ul>
             </div>
             <div>

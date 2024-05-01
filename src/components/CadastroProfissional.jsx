@@ -49,7 +49,7 @@ const CadastroProfissional = () => {
     };
     
     await registerProfissionalApi(profissonal);
-    navigate("/alunos");
+    navigate("/professor");
   };
 
   // Função para adicionar uma nova experiência profissional

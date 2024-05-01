@@ -17,3 +17,7 @@ export const deleteAlunoApi= (id) => clienteApi.delete(`/aluno/${id}`);
 export const registerProfissionalApi = (profissional) => clienteApi.post(`/profissional`,profissional);
 export const obterProfissionaisApi= (id) => clienteApi.get(`/profissionais/${id}`);
 export const deleteProfissionalApi= (id) => clienteApi.delete(`/profissional/${id}`);
+
+export const obterEquipamentosApi = (id) => clienteApi.get(`/equipamentos/${id}`);
+export const registerEquipamentoApi = (equipamento) => clienteApi.post(`/equipamento`,equipamento);
+export const deleteEquipamentoApi= (id) => clienteApi.delete(`/equipamento/${id}`);

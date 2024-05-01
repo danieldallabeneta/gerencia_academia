@@ -1,4 +1,4 @@
-import { Container, Figure } from "react-bootstrap";
+import { Figure } from "react-bootstrap";
 import './Inicial.css';
 
 

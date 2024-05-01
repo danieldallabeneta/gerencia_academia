@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { obterAlunosApi } from "../Api/Service";
+import { deleteAlunoApi, obterAlunosApi } from "../Api/Service";
 import { useAutCtx } from "../AutCtx";
-import { Button } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 
 export default function Alunos() {
     const [alunos, setAlunos] = useState([]);
@@ -28,27 +28,42 @@ export default function Alunos() {
         navigate("/aluno/cadastro")
     }
 
-    return (
-        <div class="container">
-            <nav>
+    const handleDelete = (id) => {
+        deleteAlunoApi(id);
+        const updatedRegistros = alunos.filter(aluno => aluno.id !== id);
+        setAlunos(updatedRegistros);
+    };
 
-            </nav>
-            <Button variant="primary" onClick={() => novoAluno()}>
+    return (
+        <div>
+            <Button variant="primary" onClick={() => novoAluno()} style={{ marginBottom: '10px' , marginLeft : '10px'}}>
                 Novo
             </Button>
-            <table className="table">
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Data de Nascimento</th>
+                        <th>Ativo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
                 <tbody>
                     {alunos.map((aluno) => (
                         <tr key={aluno.id}>
+                            <td>{aluno.id}</td>
                             <td>{aluno.nome}</td>
                             <td>{aluno.dataNascimento}</td>
+                            <td>{aluno.ativo == 1 ? 'Sim' : 'Não'}</td>
                             <td>
-                                <button class="btn btn-success" onClick={() => visualizarAluno(aluno.id)}> Ver + </button>
+                                <Button variant="primary" onClick={() => visualizarAluno(aluno.id)}>Ver +</Button>
+                                <Button variant="danger" onClick={() => handleDelete(aluno.id)} style={{ marginLeft: '10px' }}>Excluir</Button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
-            </table>
+            </Table>
         </div>
     );
 }

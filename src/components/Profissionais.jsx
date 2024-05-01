@@ -20,7 +20,7 @@ function Profissionais() {
             .catch((erro) => console.log(erro));
     }
 
-    function visualizarAluno(id) {
+    function visualizarProfissional(id) {
         navigate(`/professorDetalhes/${id}`);
     }
 
@@ -45,6 +45,7 @@ function Profissionais() {
                         <th>Id</th>
                         <th>Nome</th>
                         <th>Data de Nascimento</th>
+                        <th>Ativo</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -54,8 +55,9 @@ function Profissionais() {
                             <td>{profissional.id}</td>
                             <td>{profissional.nome}</td>
                             <td>{profissional.dataNascimento}</td>
+                            <td>{profissional.ativo == 1 ? 'Sim' : 'Não'}</td>
                             <td>
-                                <Button variant="primary" onClick={() => visualizarAluno(profissional.id)}>Ver +</Button>
+                                <Button variant="primary" onClick={() => visualizarProfissional(profissional.id)}>Ver +</Button>
                                 <Button variant="danger" onClick={() => handleDelete(profissional.id)} style={{ marginLeft : '10px'}}>Excluir</Button>
                             </td>
                         </tr>
@@ -63,7 +65,6 @@ function Profissionais() {
                 </tbody>
             </Table>
         </div>
-
     );
 }
 
