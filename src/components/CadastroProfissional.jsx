@@ -72,8 +72,7 @@ const CadastroProfissional = () => {
   };
 
   return (
-    <Container>
-      <h1>Cadastro de Professor de Academia</h1>
+    <Container fluid>
       <Form onSubmit={handleSubmit}>
 
         {/* Dados Principais */}

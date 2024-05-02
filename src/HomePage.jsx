@@ -10,6 +10,8 @@ import CadastroProfissional from "./components/CadastroProfissional";
 import Profissionais from "./components/Profissionais";
 import CadastroEquipamento from "./components/CadastroEquipamento";
 import Equipamentos from "./components/Equipamentos";
+import CadastroAtividade from "./components/CadastroAtividade";
+import Atividades from "./components/Atividades";
 
 function HomePage(){
 
@@ -32,9 +34,11 @@ function HomePage(){
                     <Route path="/alunos" element={<Alunos />}></Route>
                     <Route path="/aluno/cadastro" element={<CadastroAluno />}></Route>
                     <Route path="/professor" element={<Profissionais />}></Route>
+                    <Route path="/professor/cadastro" element={<CadastroProfissional />}></Route>
                     <Route path="/equipamento" element={<Equipamentos />}></Route>
                     <Route path="/equipamento/cadastro" element={<CadastroEquipamento />}></Route>
-                    <Route path="/professor/cadastro" element={<CadastroProfissional />}></Route>
+                    <Route path="/atividade" element={<Atividades />}></Route>
+                    <Route path="/atividade/cadastro" element={<CadastroAtividade />}></Route>
                 </Routes>
             </BrowserRouter>
         </AutProvider>

@@ -7,16 +7,17 @@ import { deleteProfissionalApi, obterProfissionaisApi } from '../Api/Service';
 function Profissionais() {
     const [profissionais, setProfissionais] = useState([]);
     const navigate = useNavigate();
-    useEffect(() => atualizarProfissionais(), []);
+    useEffect(() => atualizarProfissionais());
     const autCtx = useAutCtx();
     const loja = autCtx.lojaId;
 
     function atualizarProfissionais() {
         obterProfissionaisApi(loja)
             .then((resposta) => {
-                setProfissionais(resposta.data);
+                if(resposta.data !== ''){
+                    setProfissionais(resposta.data);
+                }
             })
-
             .catch((erro) => console.log(erro));
     }
 
@@ -28,10 +29,12 @@ function Profissionais() {
         navigate("/professor/cadastro")
     }
 
-    const handleDelete = (id) => {
-        deleteProfissionalApi(id);
-        const updatedRegistros = profissionais.filter(profissional => profissional.id !== id);
-        setProfissionais(updatedRegistros);
+    const handleDelete = async (id) => {
+        let exclusao = await deleteProfissionalApi(id);
+        if(exclusao.data){
+            const updatedRegistros = profissionais.filter(profissional => profissional.id !== id);
+            setProfissionais(updatedRegistros);
+        }
     };
 
     return (
@@ -42,11 +45,11 @@ function Profissionais() {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Nome</th>
-                        <th>Data de Nascimento</th>
-                        <th>Ativo</th>
-                        <th>Ações</th>
+                        <th style={{ width: '5%' }}>Id</th>
+                        <th style={{ width: '55%' }}>Nome</th>
+                        <th style={{ width: '15%' }}>Data de Nascimento</th>
+                        <th style={{ width: '10%' }}>Ativo</th>
+                        <th style={{ width: '15%' }}>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,7 +58,7 @@ function Profissionais() {
                             <td>{profissional.id}</td>
                             <td>{profissional.nome}</td>
                             <td>{profissional.dataNascimento}</td>
-                            <td>{profissional.ativo == 1 ? 'Sim' : 'Não'}</td>
+                            <td>{profissional.ativo === 1 ? 'Sim' : 'Não'}</td>
                             <td>
                                 <Button variant="primary" onClick={() => visualizarProfissional(profissional.id)}>Ver +</Button>
                                 <Button variant="danger" onClick={() => handleDelete(profissional.id)} style={{ marginLeft : '10px'}}>Excluir</Button>

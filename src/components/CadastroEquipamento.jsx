@@ -57,7 +57,6 @@ const CadastroEquipamento = () => {
 
   return (
     <Container fluid>
-      <h2 className="text-center mb-4">Cadastro de Equipamento</h2>
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col md={5}>
