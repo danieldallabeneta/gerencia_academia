@@ -27,12 +27,6 @@ export default function AutProvider({children}){
         }
     }
 
-    function sair(){
-        setLojaId(null);
-        setLojaNome(null);
-        Navigate(`/`);
-    }
-
     return (
         <div>
             <AutCtx.Provider value={{selecionado, setaLoja, lojaId, lojaNome}}>

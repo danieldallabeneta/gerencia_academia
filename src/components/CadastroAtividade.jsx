@@ -60,7 +60,7 @@ function CadastroAtividade() {
                         </Form.Group>
                     </Col>
                     <Col>
-                        <Form.Group controlId="formSearchableDropdown">
+                        <Form.Group controlId="formProfessor">
                             <Form.Label>Selecione o Professor(a)</Form.Label>
                             <Form.Control required as="select" value={professor} onChange={(e) => setProfessor(e.target.value)}>
                                 <option value="">Selecione</option>

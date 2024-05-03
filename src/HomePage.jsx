@@ -12,6 +12,8 @@ import CadastroEquipamento from "./components/CadastroEquipamento";
 import Equipamentos from "./components/Equipamentos";
 import CadastroAtividade from "./components/CadastroAtividade";
 import Atividades from "./components/Atividades";
+import CadastroHorario from "./components/CadastroHorario";
+import Horarios from "./components/Horarios";
 
 function HomePage(){
 
@@ -39,6 +41,8 @@ function HomePage(){
                     <Route path="/equipamento/cadastro" element={<CadastroEquipamento />}></Route>
                     <Route path="/atividade" element={<Atividades />}></Route>
                     <Route path="/atividade/cadastro" element={<CadastroAtividade />}></Route>
+                    <Route path="/horario" element={<Horarios />}></Route>
+                    <Route path="/horario/cadastro" element={<CadastroHorario />}></Route>
                 </Routes>
             </BrowserRouter>
         </AutProvider>

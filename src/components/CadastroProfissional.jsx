@@ -57,12 +57,12 @@ const CadastroProfissional = () => {
     setExperiencias([...experiencias, { empresa: '', dataInicio: '', dataTermino: '', atividades: '' }]);
   };
 
-  // Função para atualizar os campos de experiência profissional
-  const handleExperienciaChange = (index, field, value) => {
-    const updatedExperiencias = [...experiencias];
-    updatedExperiencias[index][field] = value;
-    setExperiencias(updatedExperiencias);
-  };
+    // Função para atualizar os campos de experiência profissional
+    const handleExperienciaChange = (index, field, value) => {
+      const updatedExperiencias = [...experiencias];
+      updatedExperiencias[index][field] = value;
+      setExperiencias(updatedExperiencias);
+    };
 
   const handleUfChange = (e) => {
     const inputValue = e.target.value.toUpperCase();

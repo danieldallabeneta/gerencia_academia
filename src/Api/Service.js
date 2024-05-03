@@ -28,3 +28,8 @@ export const deleteEquipamentoApi= (id) => clienteApi.delete(`/equipamento/${id}
 export const registerAtividadeApi = (atividade) => clienteApi.post(`/atividade`,atividade);
 export const obterAtividadesApi= (id) => clienteApi.get(`/atividades/${id}`);
 export const deleteAtividadeApi= (id) => clienteApi.delete(`/atividade/${id}`);
+
+/* Rest de Horarios */
+export const obterHorariosApi = (id) => clienteApi.get(`/horarios/${id}`);
+export const registerHorarioApi = (horario) => clienteApi.post(`/horario`,horario);
+export const deleteHorarioApi= (id) => clienteApi.delete(`/horario/${id}`);
