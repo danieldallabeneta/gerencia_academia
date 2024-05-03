@@ -14,6 +14,7 @@ import CadastroAtividade from "./components/CadastroAtividade";
 import Atividades from "./components/Atividades";
 import CadastroHorario from "./components/CadastroHorario";
 import Horarios from "./components/Horarios";
+import Rodape from "./components/Rodape";
 
 function HomePage(){
 
@@ -45,6 +46,7 @@ function HomePage(){
                     <Route path="/horario/cadastro" element={<CadastroHorario />}></Route>
                 </Routes>
             </BrowserRouter>
+            <Rodape/>
         </AutProvider>
     );
 }

@@ -16,11 +16,6 @@ function Cabecalho() {
         <Navbar bg="light">
           <Navbar.Brand>
             <img alt="logo" src="./img/logo.png" width="80" height="80" className="d-inline-block align-top" />
-            {selecionado && nome && (
-              <Navbar.Text>
-                Empresa: {autCtx.lojaNome}
-              </Navbar.Text>
-            )}
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
