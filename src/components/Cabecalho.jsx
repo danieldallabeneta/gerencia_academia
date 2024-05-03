@@ -11,7 +11,7 @@ function Cabecalho() {
   let navigate = useNavigate();
 
   return (
-    <header className="border-bottom border-light border-5 mb-5 p-3">
+    <header className="bg-white text-white text-center py-4 fixed-top">
       <Container fluid>
         <Navbar bg="light">
           <Navbar.Brand>
@@ -20,25 +20,22 @@ function Cabecalho() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              {selecionado && nome && (<Nav.Link onClick = {(e) => (navigate("/inicial"))}>Home</Nav.Link>)}
+              {selecionado && nome && (<Nav.Link onClick={(e) => (navigate("/inicial"))}>Home</Nav.Link>)}
               {selecionado && nome && (
                 <NavDropdown title="Cadastro" id="basic-nav-dropdown">
-                  <NavDropdown.Item onClick = {(e) => (navigate("/alunos"))}>Aluno</NavDropdown.Item>
-                  <NavDropdown.Item onClick = {(e) => (navigate("/professor"))}>Professor</NavDropdown.Item>
-                  <NavDropdown.Item onClick = {(e) => (navigate("/equipamento"))}>Equipamento</NavDropdown.Item>
-                  <NavDropdown.Item onClick = {(e) => (navigate("/atividade"))}>Atividade</NavDropdown.Item>
-                  <NavDropdown.Item onClick = {(e) => (navigate("/horario"))}>Horário</NavDropdown.Item>
+                  <NavDropdown.Item onClick={(e) => (navigate("/alunos"))}>Aluno</NavDropdown.Item>
+                  <NavDropdown.Item onClick={(e) => (navigate("/professor"))}>Professor</NavDropdown.Item>
+                  <NavDropdown.Item onClick={(e) => (navigate("/equipamento"))}>Equipamento</NavDropdown.Item>
+                  <NavDropdown.Item onClick={(e) => (navigate("/atividade"))}>Atividade</NavDropdown.Item>
+                  <NavDropdown.Item onClick={(e) => (navigate("/horario"))}>Horário</NavDropdown.Item>
+                  <NavDropdown.Item onClick={(e) => (navigate("/banco"))}>Banco</NavDropdown.Item>
                 </NavDropdown>
               )}
-
             </Nav>
           </Navbar.Collapse>
           <Navbar.Collapse className="justify-content-end">
-            {/* {selecionado && (
-              <Nav.Link href="/">Alterar Loja</Nav.Link>
-            )} */}
             {nome && (
-              <Nav.Link onClick = {(e) => (navigate("/"))} ><h4>Sair</h4></Nav.Link>
+              <Nav.Link onClick={(e) => (navigate("/"))} style={{color:'gray'}}><h4>Sair</h4></Nav.Link>
             )}
           </Navbar.Collapse>
         </Navbar>

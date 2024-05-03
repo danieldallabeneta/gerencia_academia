@@ -9,7 +9,7 @@ function Rodape() {
   const nome = autCtx.lojaNome;
 
   return (
-    <footer className="footer fixed-bottom text-white" style={{ paddingTop: '30px', background: 'black' }}>
+    <footer className="footer py-4 text-white" style={{marginTop: '30px', background: 'black'}}>
       <Container>
         <Row className="justify-content-center">
           <Col className="text-left" style={{ marginRight: '40%', color: 'white' }} xs="auto">

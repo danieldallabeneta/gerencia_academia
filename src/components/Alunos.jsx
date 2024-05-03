@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteAlunoApi, obterAlunosApi } from "../Api/Service";
 import { useAutCtx } from "../AutCtx";
-import { Button, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 
 export default function Alunos() {
     const [alunos, setAlunos] = useState([]);
@@ -14,7 +14,7 @@ export default function Alunos() {
     function atualizarAlunos() {
         obterAlunosApi(loja)
             .then((resposta) => {
-                if(resposta.data !== ''){
+                if (resposta.data !== '') {
                     setAlunos(resposta.data);
                 }
             })
@@ -37,35 +37,38 @@ export default function Alunos() {
     };
 
     return (
-        <div>
-            <Button variant="primary" onClick={() => novoAluno()} style={{ marginBottom: '10px' , marginLeft : '10px'}}>
-                Novo
-            </Button>
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th style={{ width: '5%' }}>Id</th>
-                        <th style={{ width: '55%' }}>Nome</th>
-                        <th style={{ width: '15%' }}>Data de Nascimento</th>
-                        <th style={{ width: '10%' }}>Ativo</th>
-                        <th style={{ width: '15%' }}>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {alunos.map((aluno) => (
-                        <tr key={aluno.id}>
-                            <td>{aluno.id}</td>
-                            <td>{aluno.nome}</td>
-                            <td>{aluno.dataNascimento}</td>
-                            <td>{aluno.ativo === 1 ? 'Sim' : 'Não'}</td>
-                            <td>
-                                <Button variant="primary" onClick={() => visualizarAluno(aluno.id)}>Ver +</Button>
-                                <Button variant="danger" onClick={() => handleDelete(aluno.id)} style={{ marginLeft: '10px' }}>Excluir</Button>
-                            </td>
+        <Container fluid>
+            <div>
+                <Button variant="primary" onClick={() => novoAluno()} style={{ marginBottom: '10px', marginLeft: '10px' }}>
+                    Novo
+                </Button>
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th style={{ width: '5%' }}>Id</th>
+                            <th style={{ width: '55%' }}>Nome</th>
+                            <th style={{ width: '15%' }}>Data de Nascimento</th>
+                            <th style={{ width: '10%' }}>Ativo</th>
+                            <th style={{ width: '15%' }}>Ações</th>
                         </tr>
-                    ))}
-                </tbody>
-            </Table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {alunos.map((aluno) => (
+                            <tr key={aluno.id}>
+                                <td>{aluno.id}</td>
+                                <td>{aluno.nome}</td>
+                                <td>{aluno.dataNascimento}</td>
+                                <td>{aluno.ativo === 1 ? 'Sim' : 'Não'}</td>
+                                <td>
+                                    <Button variant="primary" onClick={() => visualizarAluno(aluno.id)}>Ver +</Button>
+                                    <Button variant="danger" onClick={() => handleDelete(aluno.id)} style={{ marginLeft: '10px' }}>Excluir</Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </div>
+        </Container>
+
     );
 }

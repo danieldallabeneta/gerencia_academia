@@ -86,14 +86,14 @@ function CadastroAluno() {
             checkIndicado.map(checkbox => (
                 checkbox.id === id && !checkbox.checked ? desabilitaOpcoesIndicado(false) : true
             ));
-            
+
         } else {
             desabilitaOpcoesIndicado(true);
         }
         setCheckIndicado(prevCheckboxes =>
             prevCheckboxes.map(checkbox =>
-                checkbox.id === id && checkbox.checked ? checkbox : 
-                checkbox.id === id && !checkbox.checked ? { ...checkbox, checked: !checkbox.checked } : { ...checkbox, checked: false }
+                checkbox.id === id && checkbox.checked ? checkbox :
+                    checkbox.id === id && !checkbox.checked ? { ...checkbox, checked: !checkbox.checked } : { ...checkbox, checked: false }
             )
         );
     };
@@ -105,9 +105,9 @@ function CadastroAluno() {
         }
     }
 
-    function desabilitaOpcoesIndicado(retorno){
+    function desabilitaOpcoesIndicado(retorno) {
         setIsDisabledIndicado(retorno);
-        if(retorno){
+        if (retorno) {
             setQuemInformou('');
         }
     }
@@ -193,7 +193,7 @@ function CadastroAluno() {
         setMotivoAcademia(event.target.value);
     }
 
-    function handlerQuemInformou(event){
+    function handlerQuemInformou(event) {
         setQuemInformou(event.target.value);
     }
 
@@ -202,14 +202,14 @@ function CadastroAluno() {
 
         const listaAcademia = [];
         checkAcademia.map(checkbox => (
-            checkbox.checked ? listaAcademia.push(checkbox.id): true
+            checkbox.checked ? listaAcademia.push(checkbox.id) : true
         ));
 
         const jsonAcademia = JSON.stringify(listaAcademia);
 
         let indicado = '';
         checkIndicado.map(checkbox => (
-            checkbox.checked ? indicado = checkbox.id: true
+            checkbox.checked ? indicado = checkbox.id : true
         ));
 
         const aluno = {
@@ -223,15 +223,15 @@ function CadastroAluno() {
             uf: uf,
             cep: cep,
             rua: rua,
-            numero:numero,
+            numero: numero,
             bairro: bairro,
-            loja : idLoja,
+            loja: idLoja,
             planoSaude: planoSaude,
             esporte: esporte,
             academia: jsonAcademia,
             motivoAcademia: motivoAcademia,
-            comoSoube : indicado,
-            quemInformou:quemInformou
+            comoSoube: indicado,
+            quemInformou: quemInformou
         };
 
         await registerAlunoApi(aluno);
@@ -349,7 +349,7 @@ function CadastroAluno() {
                     </FormGroup>
                     <FormGroup as={Col} controlId="formGridUF">
                         <Form.Label>UF</Form.Label>
-                        <InputMask mask="aa" value={uf} onChange={handlerUF} maskChar={null} className="form-control"/>                          
+                        <InputMask mask="aa" value={uf} onChange={handlerUF} maskChar={null} className="form-control" />
                     </FormGroup>
                 </Row>
             </div>
@@ -433,13 +433,14 @@ function CadastroAluno() {
                     </FormGroup>
                 </Row>
             </div>
-            <Button variant="primary" className="mb-2" style={{ marginTop: '10px' }} onClick={handleSubmitAluno}>
-                Confirmar
-            </Button>
-            <Button variant="primary" className="mb-2" style={{ marginTop: '10px', marginLeft: '5px'}} onClick={cancelar}>
-                Cancelar
-            </Button>
-            <br />
+            <div className="text-center">
+                <Button variant="primary" className="mb-2" style={{ marginTop: '10px' }} onClick={handleSubmitAluno}>
+                    Confirmar
+                </Button>
+                <Button variant="secondary" className="mb-2" style={{ marginTop: '10px', marginLeft: '5px' }} onClick={cancelar}>
+                    Cancelar
+                </Button>
+            </div>
         </Form >
     );
 }
