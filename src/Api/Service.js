@@ -38,3 +38,10 @@ export const deleteHorarioApi= (id) => clienteApi.delete(`/horario/${id}`);
 export const obterBancosApi = (id) => clienteApi.get(`/bancos/${id}`);
 export const registerBancoApi = (banco) => clienteApi.post(`/banco`,banco);
 export const deleteBancoApi= (id) => clienteApi.delete(`/banco/${id}`);
+
+/* Rest de Usuário */
+export const registerUserApi = (user) => clienteApi.post(`/users`,user);
+export const obterUserIdApi = (id) => clienteApi.get(`/users/${id}`);
+export const obterUsuariosApi = () => clienteApi.get(`/users`);
+export const obterUserEmailApi = (email) => clienteApi.get(`/usuario/${email}`);
+export const autenticarApi = (credencial) => clienteApi.post(`/autenticar`,credencial);

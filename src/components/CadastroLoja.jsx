@@ -1,18 +1,22 @@
 import { useState } from "react";
-import { Col, Container, Form, FormGroup, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, FormGroup, Row } from "react-bootstrap";
 import { registerLojaApi } from "../Api/Service";
 import { useNavigate } from "react-router-dom";
-
+import InputMask from 'react-input-mask';
 
 function CadastroLoja() {
 
     const [nome, setNome] = useState("");
+    const [cidade, setCidade] = useState("");
+    const [cnpj, setCnpj] = useState("");
     const navigate = useNavigate();
 
     const cadastraLoja = async (event) => {
         event.preventDefault();
         const loja = {
-            nome: nome
+            nome: nome,
+            cidade:cidade,
+            cnpj:cnpj
         }
 
         registerLojaApi(loja)
@@ -27,29 +31,42 @@ function CadastroLoja() {
         setNome("");
     }
 
-    function setNomeLoja(event) {
-        setNome(event.target.value);
-    }
-
     function retornar() {
         navigate("/");
     }
 
     return (
         <Container>
+            <h4>Cadastro de Loja</h4>
             <Form onSubmit={cadastraLoja}>
                 <Row>
-                    <FormGroup as={Col}>
-                        <Form.Label>Nome</Form.Label>
-                        <Form.Control type="text" id="nome" value={nome} onChange={setNomeLoja} />
-                    </FormGroup>
+                    <Col>
+                        <FormGroup controlId="formNome">
+                            <Form.Label>Nome</Form.Label>
+                            <Form.Control type="text" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+                        </FormGroup>
+                    </Col>
+                    <Col>
+                        <FormGroup controlId="formCidade">
+                            <Form.Label>Cidade</Form.Label>
+                            <Form.Control type="text" id="cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} />
+                        </FormGroup>
+                    </Col>
+                    <Col>
+                        <FormGroup controlId="formCnpj">
+                            <Form.Label>Cnpj</Form.Label>
+                            <InputMask required mask="999.999.999/9999-99" maskChar="_" alwaysShowMask={true} className="form-control" value={cnpj} onChange={(e) => setCnpj(e.target.value)} />
+                        </FormGroup>
+                    </Col>
                 </Row>
                 <Row>
-                    <div className="d-grid gap-2 col-2 mx-auto">
-                        <button className="btn btn-primary" type="submit">Cadastrar</button>
-                    </div>
-                    <div className="d-grid gap-2 col-2 mx-auto">
-                        <button className="btn btn-primary" onClick={() => retornar()}>Cancelar</button>
+                    <div className="text-center">
+                        <Button variant="primary" type="submit" style={{ marginTop: '10px' }}>
+                            Cadastrar
+                        </Button>
+                        <Button variant="secondary" style={{ marginTop: '10px', marginLeft: '5px' }} onClick={() => retornar()}>
+                            Cancelar
+                        </Button>
                     </div>
                 </Row>
             </Form>

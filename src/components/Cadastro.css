@@ -1,0 +1,39 @@
+form {
+    margin: 0 auto;
+    width: auto;
+    padding: 1em;
+    border: 1px solid #4b34dc;
+    border-radius: 1em;
+}
+
+.pessoa{
+    margin-top: 1px;
+}
+
+.endereco{
+    margin-top: 1px;
+    text-align: center;
+    border-top: 1px solid lightgray;
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn-animated {
+    animation: moveInBottom 2s ease-out;
+    animation-fill-mode: backwards;
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+} 

@@ -331,7 +331,7 @@ function CadastroAluno() {
                     </FormGroup>
                     <FormGroup as={Col} controlId="formGridNumero">
                         <Form.Label>Número</Form.Label>
-                        <Form.Control type="integer" placeholder="Número Casa ou Apt" value={numero} onChange={handlerNumero} />
+                        <Form.Control type="number" placeholder="Número Casa ou Apt" value={numero} onChange={handlerNumero} />
                     </FormGroup>
                 </Row>
                 <Row className="mb-2">

@@ -6,10 +6,11 @@ import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-sv
 function Rodape() {
   const autCtx = useAutCtx();
   const selecionado = autCtx.selecionado;
+  const autenticado = autCtx.autenticado;
   const nome = autCtx.lojaNome;
 
   return (
-    <footer className="footer py-4 text-white" style={{marginTop: '30px', background: 'black'}}>
+    <footer className="footer py-4 text-white" style={{ marginTop: '30px', background: 'black' }}>
       <Container>
         <Row className="justify-content-center">
           <Col className="text-left" style={{ marginRight: '40%', color: 'white' }} xs="auto">
@@ -23,16 +24,21 @@ function Rodape() {
               <br />
               <strong>Email:</strong>
               <br />
-              gymmanegement@gmail.com
+              gymmanagement@gmail.com
             </p>
           </Col>
-          {selecionado && nome && (
-            <Col className="text-center" style={{ color: 'white' }} xs="auto">
+          <Col className="text-left" style={{ color: 'white' }} xs="auto">
+            {autenticado && (
               <div>
-                <span>Empresa Atual: {autCtx.lojaNome}</span>
+                <span><strong>Usuário Atual: </strong>{autCtx.usuarioNome}</span>
               </div>
-            </Col>
-          )}
+            )}
+            {selecionado && nome && (
+              <div>
+                <span><strong>Empresa Atual: </strong>{autCtx.lojaNome}</span>
+              </div>
+            )}
+          </Col>
         </Row>
         <Row className="justify-content-center mt-3" style={{ marginBottom: '10px' }}>
           <Col className="text-center" xs="auto">

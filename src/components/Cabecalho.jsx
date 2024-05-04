@@ -7,13 +7,19 @@ function Cabecalho() {
 
   const autCtx = useAutCtx();
   const selecionado = autCtx.selecionado;
+  const autenticado = autCtx.autenticado;
   const nome = autCtx.lojaNome;
   let navigate = useNavigate();
 
+  const sair = () => {
+    autCtx.sair();
+
+  }
+
   return (
-    <header className="bg-white text-white text-center py-4 fixed-top">
-      <Container fluid>
-        <Navbar bg="light">
+    <header className="bg-white text-white text-center py-4 fixed-top border-bottom border-black">
+      <Container fluid >
+        <Navbar bg="white">
           <Navbar.Brand>
             <img alt="logo" src="./img/logo.png" width="80" height="80" className="d-inline-block align-top" />
           </Navbar.Brand>
@@ -34,72 +40,16 @@ function Cabecalho() {
             </Nav>
           </Navbar.Collapse>
           <Navbar.Collapse className="justify-content-end">
-            {nome && (
-              <Nav.Link onClick={(e) => (navigate("/"))} style={{color:'gray'}}><h4>Sair</h4></Nav.Link>
+            {nome && autenticado && (
+              <Nav.Link onClick={(e) => (navigate("/"))} style={{ color: 'gray', marginRight:'20px'}}><h5>Alterar Estabelecimento</h5></Nav.Link>
+            )}
+            {nome && autenticado && (
+              <Nav.Link onClick={sair} style={{ color: 'gray' }}><h5>Sair</h5></Nav.Link>
             )}
           </Navbar.Collapse>
         </Navbar>
       </Container>
-      {/* <div className="row">
-        <div className="row">
-          {selecionado && nome && (<a class="navbar-brand">Loja: {autCtx.lojaNome}</a>)}
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <img alt="logo" src="./img/logo.png" />
-            <div className="collapse navbar-collapse">
-              <ul className="navbar-nav">
-                <li className="nav=item">
-                  {selecionado && nome && (<Link className="nav-link" to="/inicial">
-                    <a>Home</a>
-                  </Link>)}
-                </li>
-                <li className="nav=item">
-                  {selecionado && nome && (<Link className="nav-link" to="/alunos">
-                    <a>Alunos</a>
-                  </Link>)}
-                </li>
-                <li className="nav=item">
-                  {selecionado && nome && (<Link className="nav-link" to="/professor">
-                    <a>Professor</a>
-                  </Link>)}
-                </li>
-                <li className="nav=item">
-                  {selecionado && nome && (<Link className="nav-link" to="/equipamento">
-                    <a>Equipamentos</a>
-                  </Link>)}
-                </li>
-                <li className="nav=item">
-                  {selecionado && nome && (<Link className="nav-link" to="/atividade">
-                    <a>Atividades</a>
-                  </Link>)}
-                </li>
-                <li className="nav=item">
-                  {selecionado && nome && (<Link className="nav-link" to="/horario">
-                    <a>Horários</a>
-                  </Link>)}
-                </li>
-              </ul>
-            </div>
-            <div>
-              <ul class="navbar-nav justify-content-end">
-                <li class="nav-item">
-                  {selecionado && (<Link className="nav-link" to="/">
-                    Alterar Loja
-                  </Link>)}
-                </li>
-                <li className="nav=item">
-                  {nome && (
-                    <Link className="nav-link" onClick={sair}>
-                      Sair
-                    </Link>
-                  )}
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div> */}
-    </header>
-
+    </header >
   );
 }
 

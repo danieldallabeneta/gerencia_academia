@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Figure, Form, ModalTitle } from "react-bootstrap";
+import { Button, Col, Container, Figure, Form, ModalTitle, Row } from "react-bootstrap";
 import { obterLojasApi } from "../Api/Service";
 import { useNavigate } from "react-router-dom";
 import { useAutCtx } from "../AutCtx";
@@ -14,21 +14,22 @@ function Inicio() {
     function buscaLojas() {
         obterLojasApi()
             .then((resposta) => {
-                setLojas(resposta.data);
+                if (resposta.data !== '') {
+                    setLojas(resposta.data);
+                }
             })
-
             .catch((erro) => console.log(erro));
     }
 
     function entrar() {
         if (selecao > 0) {
             const autent = autCtx.setaLoja(selecao);
-            if(autent){
+            if (autent) {
                 navigate("/inicial")
             }
         }
     }
-    
+
     function novaLoja() {
         navigate("/loja/cadastro");
     }
@@ -38,28 +39,35 @@ function Inicio() {
     }
 
     return (
-        <Container>
-            <Figure>
-                <Figure.Image
-                    width={171}
-                    height={180}
-                    alt="171x180"
-                    src="./img/logo.png"
-                />
-            </Figure>
-            <ModalTitle>Seleciona a Loja para continuar</ModalTitle>
-            <Form.Select size="lg" className="mb-2" onChange={setaOpcao}>
-                <option>Selecione...</option>
-                {lojas.map(loja => (
-                    <option value={loja.id}>{loja.nome}</option>)
-                )}
-            </Form.Select>
-            <Button variant="primary" className="mb-2" onClick={() => entrar()}>
-                Confirmar
-            </Button>
-            <Button variant="primary" className="mb-2" onClick={() => novaLoja()}>
-                Nova Loja
-            </Button>
+        <Container style={{ minHeight: '600px', minWidth: '300px', maxWidth: '800px'}}>
+            <Row className="justify-content-center">
+                <Col md={6} className="text-center">
+                    <Figure>
+                        <Figure.Image width={171} height={180} alt="171x180" src="./img/logo.png" style={{ opacity: 0.8 }} />
+                    </Figure>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <ModalTitle>Seleciona a Loja</ModalTitle>
+                    <Form.Select size="lg" className="mb-2" onChange={setaOpcao}>
+                        <option>Selecione...</option>
+                        {lojas.map(loja => (
+                            <option value={loja.id}>{loja.nome}</option>)
+                        )}
+                    </Form.Select>
+                </Col>
+            </Row>
+            <Row>
+                <div className="text-center">
+                    <Button className="confirmar" variant="primary" style={{ marginTop: '10px', outline: 'none' }} onClick={() => entrar()}>
+                        Confirmar
+                    </Button>
+                    <Button variant="primary" style={{ marginTop: '10px', marginLeft: '5px', outline: 'none' }} onClick={() => novaLoja()}>
+                        Nova Loja
+                    </Button>
+                </div>
+            </Row>
         </Container>
     );
 }

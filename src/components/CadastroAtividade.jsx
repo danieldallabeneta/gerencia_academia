@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
-import { useAutCtx } from '../AutCtx';
 import { obterProfissionaisApi, registerAtividadeApi } from '../Api/Service';
 import { useNavigate } from 'react-router-dom';
+import { useAutCtx } from '../AutCtx';
 
 function CadastroAtividade() {
     const autCtx = useAutCtx();
@@ -94,9 +94,7 @@ function CadastroAtividade() {
                     </Button>
                 </div>
             </Form>
-
         </Container>
-
     );
 }
 
