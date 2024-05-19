@@ -35,6 +35,7 @@ function Cabecalho() {
                   <NavDropdown.Item onClick={(e) => (navigate("/atividade"))}>Atividade</NavDropdown.Item>
                   <NavDropdown.Item onClick={(e) => (navigate("/horario"))}>Horário</NavDropdown.Item>
                   <NavDropdown.Item onClick={(e) => (navigate("/banco"))}>Banco</NavDropdown.Item>
+                  <NavDropdown.Item onClick={(e) => (navigate("/produtos"))}>Produto</NavDropdown.Item>
                 </NavDropdown>
               )}
             </Nav>

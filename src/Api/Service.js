@@ -58,3 +58,10 @@ export const obterUserIdApi = (id) => clienteApi.get(`/users/${id}`);
 export const obterUsuariosApi = () => clienteApi.get(`/users`);
 export const obterUserEmailApi = (email) => clienteApi.get(`/usuario/${email}`);
 export const autenticarApi = (credencial) => clienteApi.post(`/autenticar`,credencial);
+
+/* Rest de Produto */
+export const registerProdutoApi = (produto) => clienteApi.post(`/products`,produto);
+export const obterProdutosApi= (id) => clienteApi.get(`/products/${id}`);
+export const obterProdutoApi= (id) => clienteApi.get(`/product/${id}`);
+export const deleteProdutoApi= (id) => clienteApi.delete(`/product/${id}`);
+export const atualizaProdutoApi = (produto) => clienteApi.put(`/product`,produto);

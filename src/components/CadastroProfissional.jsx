@@ -80,7 +80,7 @@ const CadastroProfissional = () => {
       <Form onSubmit={handleSubmit}>
 
         {/* Dados Principais */}
-        <h2>Dados Principais</h2>
+        <h3>Dados Principais</h3>
         <Row>
           <Col>
             <Form.Group controlId="formNome">
@@ -110,7 +110,7 @@ const CadastroProfissional = () => {
             </Form.Group>
           </Col>
         </Row>
-        <h2>Contato</h2>
+        <h3>Contato</h3>
         <Row>
           <Col>
             <Form.Group controlId="formEmail">
@@ -131,7 +131,7 @@ const CadastroProfissional = () => {
             </Form.Group>
           </Col>
         </Row>
-        <h2>Endereço</h2>
+        <h3>Endereço</h3>
         <Row>
           <Col>
             <Form.Group controlId="formRua">
@@ -172,7 +172,7 @@ const CadastroProfissional = () => {
             </Form.Group>
           </Col>
         </Row>
-        <h2>Experiência Profissional</h2>
+        <h3>Experiência Profissional</h3>
         {experiencias.map((experiencia, index) => (
           <Row key={index}>
             <Col>

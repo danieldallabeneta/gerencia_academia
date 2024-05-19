@@ -25,6 +25,9 @@ import EquipamentoDetalhes from "./components/EquipamentoDetalhes";
 import AtividadeDetalhes from "./components/AtividadeDetalhes";
 import HorarioDetalhes from "./components/HorarioDetalhes";
 import BancoDetalhes from "./components/BancoDetalhes";
+import CadastroProduto from "./components/CadastroProduto";
+import Produtos from "./components/Produto";
+import ProdutoDetalhes from "./components/ProdutoDetalhes";
 
 function HomePage() {
 
@@ -70,6 +73,10 @@ function HomePage() {
                                     {<Route path="/banco" element={<AuthenticateRoute><Bancos/></AuthenticateRoute>}></Route>}
                                     {<Route path="/banco/cadastro" element={<AuthenticateRoute><CadastroBanco/></AuthenticateRoute>}></Route>}
                                     {<Route path="/bancoDetalhes/:id" element={<AuthenticateRoute><BancoDetalhes/></AuthenticateRoute>}></Route>}
+                                    {<Route path="/produtos" element={<AuthenticateRoute><Produtos/></AuthenticateRoute>}></Route>}
+                                    {<Route path="/produto/cadastro" element={<AuthenticateRoute><CadastroProduto/></AuthenticateRoute>}></Route>}
+                                    {<Route path="/produtoDetalhes/:id" element={<AuthenticateRoute><ProdutoDetalhes/></AuthenticateRoute>}></Route>}
+
                                 </Routes>
                             </div>
                         </div>
