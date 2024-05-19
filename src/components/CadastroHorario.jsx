@@ -63,9 +63,13 @@ const CadastroHorario = () => {
         navigate("/horario");
     };
 
+    function cancelar() {
+        navigate("/horario");
+    }
+
     return (
         <Container fluid>
-            <h2>Cadastro de Horários</h2>
+            <h3>Cadastro de Horários</h3>
             <Form onSubmit={handleSubmit}>
                 <Row>
                     <Col>
@@ -122,6 +126,9 @@ const CadastroHorario = () => {
                 <div className="text-center">
                     <Button variant="primary" type="submit" style={{ marginTop: '10px' }}>
                         Cadastrar
+                    </Button>
+                    <Button variant="secondary" style={{ marginTop: '10px', marginLeft: '5px' }} onClick={cancelar}>
+                        Cancelar
                     </Button>
                 </div>
             </Form>

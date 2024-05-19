@@ -1,7 +1,7 @@
 import { Form, Col, FormControl, FormGroup, Row, Container } from "react-bootstrap";
 import "./Cadastro.css";
 import { useState } from "react";
-import { registerUserApi } from "../Api/Service";
+import { atualizaUserApi, registerUserApi } from "../Api/Service";
 import { useNavigate } from "react-router-dom";
 import { useAutCtx } from "../AutCtx";
 import InputMask from 'react-input-mask';
@@ -28,6 +28,15 @@ function Cadastro() {
       nome: nome,
       cpf: cpf,
       email: email,
+      password: senha
+    };
+    const resposta = await registerUserApi(user);
+    const idInsert = resposta.data;
+    const usuario = {
+      id: idInsert,
+      nome: nome,
+      cpf: cpf,
+      email: email,
       password: senha,
       cep: cep,
       rua: rua,
@@ -36,11 +45,10 @@ function Cadastro() {
       cidade: cidade,
       estado: estado,
       complemento: complemento
-    };
-    const resposta = await registerUserApi(user);
-    const idInsert = resposta.data.id;
-
-    if (idInsert != null) {
+    }; 
+    if (idInsert != null) {      
+           
+      atualizaUserApi(usuario);      
       autCtx.atualizaDadosCadastro(idInsert, nome);
       navigate(`/`);
     } else {

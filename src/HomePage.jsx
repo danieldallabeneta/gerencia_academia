@@ -19,6 +19,12 @@ import Bancos from "./components/Bancos";
 import Cadastro from "./components/Cadastro";
 import Login from "./components/Login";
 import AutProvider, { useAutCtx } from "./AutCtx";
+import AlunoDetalhes from "./components/AlunoDetalhes";
+import ProfissionalDetalhes from "./components/ProfissionalDetalhes";
+import EquipamentoDetalhes from "./components/EquipamentoDetalhes";
+import AtividadeDetalhes from "./components/AtividadeDetalhes";
+import HorarioDetalhes from "./components/HorarioDetalhes";
+import BancoDetalhes from "./components/BancoDetalhes";
 
 function HomePage() {
 
@@ -47,17 +53,23 @@ function HomePage() {
 
                                     {<Route path="/loja/cadastro" element={<AuthenticateRoute><CadastroLoja/></AuthenticateRoute>}></Route>}
                                     {<Route path="/alunos" element={<AuthenticateRoute><Alunos/></AuthenticateRoute>}></Route>}
+                                    {<Route path="/alunoDetalhes/:id" element={<AuthenticateRoute><AlunoDetalhes/></AuthenticateRoute>}></Route>}
                                     {<Route path="/aluno/cadastro" element={<AuthenticateRoute><CadastroAluno/></AuthenticateRoute>}></Route>}
                                     {<Route path="/professor" element={<AuthenticateRoute><Profissionais/></AuthenticateRoute>}></Route>}
                                     {<Route path="/professor/cadastro" element={<AuthenticateRoute><CadastroProfissional/></AuthenticateRoute>}></Route>}
+                                    {<Route path="/professorDetalhes/:id" element={<AuthenticateRoute><ProfissionalDetalhes/></AuthenticateRoute>}></Route>}
                                     {<Route path="/equipamento" element={<AuthenticateRoute><Equipamentos/></AuthenticateRoute>}></Route>}
                                     {<Route path="/equipamento/cadastro" element={<AuthenticateRoute><CadastroEquipamento/></AuthenticateRoute>}></Route>}
+                                    {<Route path="/equipamentoDetalhes/:id" element={<AuthenticateRoute><EquipamentoDetalhes/></AuthenticateRoute>}></Route>}
                                     {<Route path="/atividade" element={<AuthenticateRoute><Atividades/></AuthenticateRoute>}></Route>}
                                     {<Route path="/atividade/cadastro" element={<AuthenticateRoute><CadastroAtividade/></AuthenticateRoute>}></Route>}
+                                    {<Route path="/atividadeDetalhes/:id" element={<AuthenticateRoute><AtividadeDetalhes/></AuthenticateRoute>}></Route>}
                                     {<Route path="/horario" element={<AuthenticateRoute><Horarios/></AuthenticateRoute>}></Route>}
                                     {<Route path="/horario/cadastro" element={<AuthenticateRoute><CadastroHorario/></AuthenticateRoute>}></Route>}
+                                    {<Route path="/horarioDetalhes/:id" element={<AuthenticateRoute><HorarioDetalhes/></AuthenticateRoute>}></Route>}
                                     {<Route path="/banco" element={<AuthenticateRoute><Bancos/></AuthenticateRoute>}></Route>}
                                     {<Route path="/banco/cadastro" element={<AuthenticateRoute><CadastroBanco/></AuthenticateRoute>}></Route>}
+                                    {<Route path="/bancoDetalhes/:id" element={<AuthenticateRoute><BancoDetalhes/></AuthenticateRoute>}></Route>}
                                 </Routes>
                             </div>
                         </div>

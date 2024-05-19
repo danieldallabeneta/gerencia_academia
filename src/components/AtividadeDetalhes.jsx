@@ -1,19 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
-import { obterProfissionaisApi, registerAtividadeApi } from '../Api/Service';
-import { useNavigate } from 'react-router-dom';
+import { atualizaAtividadeApi, obterAtividadeApi, obterProfissionaisApi } from '../Api/Service';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAutCtx } from '../AutCtx';
 
-function CadastroAtividade() {
+function AtividadeDetalhes() {
     const autCtx = useAutCtx();
     const loja = autCtx.lojaId;
     let navigate = useNavigate();
-    const [nome, setNome] = useState('');
+    const [codigo, setCodigo] = useState("");
+    const [nome, setNome] = useState("");
     const [local, setLocal] = useState('');
     const [descricao, setDescricao] = useState('');
     const [professor, setProfessor] = useState(null);
     useEffect(() => atualizarProfissional());
     const [options, setProfissional] = useState([]);
+    const { id } = useParams();
+    useEffect(() => obterAtividade(id), [id]);
+
+    function obterAtividade(id) {
+        obterAtividadeApi(id)
+            .then((resposta) => carregaDados(resposta))
+            .catch((erro) => console.log(erro));
+    }
+
+    function carregaDados(resposta) {
+        const dados = resposta.data;
+        setCodigo(dados.id);
+        setNome(dados.nome);
+        setLocal(dados.local);
+        setDescricao(dados.descricao);
+        setProfessor(dados.professor);
+    }
 
     function atualizarProfissional() {
         obterProfissionaisApi(loja)
@@ -32,20 +50,25 @@ function CadastroAtividade() {
         e.preventDefault();
 
         const atividade = {
-            nome:nome,
+            id: codigo,
+            nome: nome,
             professor: parseInt(professor),
             local: local,
             descricao: descricao,
-            loja:loja
+            loja: loja
         };
 
-        await registerAtividadeApi(atividade);
+        await atualizaAtividadeApi(atividade);
 
         navigate("/atividade");
     }
 
-    const onClickCancelar = ()=>{
+    const onClickCancelar = () => {
         navigate("/atividade");
+    }
+
+    function handlerNome(event) {
+        setNome(event.target.value);
     }
 
     return (
@@ -53,6 +76,12 @@ function CadastroAtividade() {
             <h3>Cadastro de Atividades</h3>
             <Form onSubmit={handleSubmitAtividade}>
                 <Row>
+                    <Col md={1}>
+                        <Form.Group controlId="formGridId">
+                            <Form.Label>Id</Form.Label>
+                            <Form.Control type="number" disabled value={codigo} />
+                        </Form.Group>
+                    </Col>
                     <Col>
                         <Form.Group controlId="formNome">
                             <Form.Label>Nome</Form.Label>
@@ -89,7 +118,7 @@ function CadastroAtividade() {
                     <Button variant="primary" type="submit" style={{ marginTop: '10px' }}>
                         Cadastrar
                     </Button>
-                    <Button variant="secondary" style={{ marginTop: '10px', marginLeft : '10px'}} onClick={onClickCancelar}>
+                    <Button variant="secondary" style={{ marginTop: '10px', marginLeft: '10px' }} onClick={onClickCancelar}>
                         Cancelar
                     </Button>
                 </div>
@@ -98,4 +127,4 @@ function CadastroAtividade() {
     );
 }
 
-export default CadastroAtividade;
+export default AtividadeDetalhes;

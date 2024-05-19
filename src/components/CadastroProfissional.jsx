@@ -32,22 +32,22 @@ const CadastroProfissional = () => {
     const profissonal = {
       nome: nome,
       dataNascimento: dataNascimento,
-      cpf : cpf,
+      cpf: cpf,
       sexo: parseInt(sexo),
       ativo: 1,
       email: email,
-      telefone:telefone,
+      telefone: telefone,
       celular: celular,
-      loja : idLoja,
+      loja: idLoja,
       rua: rua,
       bairro: bairro,
       cidade: cidade,
       cep: cep,
-      uf: uf,      
-      numero:numero,
-      experiencia:experiencia
+      uf: uf,
+      numero: numero,
+      experiencia: experiencia
     };
-    
+
     await registerProfissionalApi(profissonal);
     navigate("/professor");
   };
@@ -57,12 +57,12 @@ const CadastroProfissional = () => {
     setExperiencias([...experiencias, { empresa: '', dataInicio: '', dataTermino: '', atividades: '' }]);
   };
 
-    // Função para atualizar os campos de experiência profissional
-    const handleExperienciaChange = (index, field, value) => {
-      const updatedExperiencias = [...experiencias];
-      updatedExperiencias[index][field] = value;
-      setExperiencias(updatedExperiencias);
-    };
+  // Função para atualizar os campos de experiência profissional
+  const handleExperienciaChange = (index, field, value) => {
+    const updatedExperiencias = [...experiencias];
+    updatedExperiencias[index][field] = value;
+    setExperiencias(updatedExperiencias);
+  };
 
   const handleUfChange = (e) => {
     const inputValue = e.target.value.toUpperCase();
@@ -70,6 +70,10 @@ const CadastroProfissional = () => {
 
     setUf(sanitizedValue);
   };
+
+  function cancelar() {
+    navigate("/professor");
+  }
 
   return (
     <Container fluid>
@@ -111,19 +115,19 @@ const CadastroProfissional = () => {
           <Col>
             <Form.Group controlId="formEmail">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="Digite o email do professor" value={email} onChange={(e) => setEmail(e.target.value)}/>
+              <Form.Control type="email" placeholder="Digite o email do professor" value={email} onChange={(e) => setEmail(e.target.value)} />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group controlId="formTelefone">
               <Form.Label>Telefone</Form.Label>
-              <InputMask mask="+99 (99) 9999-9999" maskChar="_" alwaysShowMask={true} className="form-control" value={telefone} onChange={(e) => setTelefone(e.target.value)} />              
+              <InputMask mask="+99 (99) 9999-9999" maskChar="_" alwaysShowMask={true} className="form-control" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group controlId="formCelular">
               <Form.Label>Celular</Form.Label>
-              <InputMask mask="(99) 99999-9999" maskChar="_" alwaysShowMask={true} className="form-control" value={celular} onChange={(e) => setCelular(e.target.value)} />              
+              <InputMask mask="(99) 99999-9999" maskChar="_" alwaysShowMask={true} className="form-control" value={celular} onChange={(e) => setCelular(e.target.value)} />
             </Form.Group>
           </Col>
         </Row>
@@ -132,19 +136,19 @@ const CadastroProfissional = () => {
           <Col>
             <Form.Group controlId="formRua">
               <Form.Label>Rua</Form.Label>
-              <Form.Control type="text" placeholder="Digite a rua do professor" value={rua} onChange={(e) => setRua(e.target.value)}/>
+              <Form.Control type="text" placeholder="Digite a rua do professor" value={rua} onChange={(e) => setRua(e.target.value)} />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group controlId="formBairro">
               <Form.Label>Bairro</Form.Label>
-              <Form.Control type="text" placeholder="Digite o bairro do professor" value={bairro} onChange={(e) => setBairro(e.target.value)}/>
+              <Form.Control type="text" placeholder="Digite o bairro do professor" value={bairro} onChange={(e) => setBairro(e.target.value)} />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group controlId="formCidade">
               <Form.Label>Cidade</Form.Label>
-              <Form.Control type="text" placeholder="Digite a cidade do professor" value={cidade} onChange={(e) => setCidade(e.target.value)}/>
+              <Form.Control type="text" placeholder="Digite a cidade do professor" value={cidade} onChange={(e) => setCidade(e.target.value)} />
             </Form.Group>
           </Col>
         </Row>
@@ -152,19 +156,19 @@ const CadastroProfissional = () => {
           <Col>
             <Form.Group controlId="formCEP">
               <Form.Label>CEP</Form.Label>
-              <InputMask mask="99999-999" maskChar="_" alwaysShowMask={true} className="form-control" value={cep} onChange={(e) => setCep(e.target.value)} />              
+              <InputMask mask="99999-999" maskChar="_" alwaysShowMask={true} className="form-control" value={cep} onChange={(e) => setCep(e.target.value)} />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group controlId="formUF">
               <Form.Label>UF</Form.Label>
-              <InputMask mask="aa" value={uf} onChange={handleUfChange} maskChar={null} className="form-control"/>             
+              <InputMask mask="aa" value={uf} onChange={handleUfChange} maskChar={null} className="form-control" />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group controlId="formNumero">
               <Form.Label>Número</Form.Label>
-              <Form.Control type="number" placeholder="Digite o número do endereço" value={numero} onChange={(e) => setNumero(e.target.value)}/>
+              <Form.Control type="number" placeholder="Digite o número do endereço" value={numero} onChange={(e) => setNumero(e.target.value)} />
             </Form.Group>
           </Col>
         </Row>
@@ -174,31 +178,40 @@ const CadastroProfissional = () => {
             <Col>
               <Form.Group controlId={`formEmpresa-${index}`}>
                 <Form.Label>Empresa</Form.Label>
-                <Form.Control type="text" placeholder="Digite o nome da empresa"  value={experiencia.empresa} onChange={(e) => handleExperienciaChange(index, 'empresa', e.target.value)}/>
+                <Form.Control type="text" placeholder="Digite o nome da empresa" value={experiencia.empresa} onChange={(e) => handleExperienciaChange(index, 'empresa', e.target.value)} />
               </Form.Group>
             </Col>
             <Col>
               <Form.Group controlId={`formDataInicio-${index}`}>
                 <Form.Label>Data de Início</Form.Label>
-                <Form.Control type="date" value={experiencia.dataInicio} onChange={(e) => handleExperienciaChange(index, 'dataInicio', e.target.value)}/>
+                <Form.Control type="date" value={experiencia.dataInicio} onChange={(e) => handleExperienciaChange(index, 'dataInicio', e.target.value)} />
               </Form.Group>
             </Col>
             <Col>
               <Form.Group controlId={`formDataTermino-${index}`}>
                 <Form.Label>Data de Término</Form.Label>
-                <Form.Control type="date" value={experiencia.dataTermino} onChange={(e) => handleExperienciaChange(index, 'dataTermino', e.target.value)}/>
+                <Form.Control type="date" value={experiencia.dataTermino} onChange={(e) => handleExperienciaChange(index, 'dataTermino', e.target.value)} />
               </Form.Group>
             </Col>
             <Col>
               <Form.Group controlId={`formAtividades-${index}`}>
                 <Form.Label>Atividades Desenvolvidas</Form.Label>
-                <Form.Control as="textarea" rows={3} placeholder="Descreva as atividades desenvolvidas" value={experiencia.atividades} onChange={(e) => handleExperienciaChange(index, 'atividades', e.target.value)}/>
+                <Form.Control as="textarea" rows={3} placeholder="Descreva as atividades desenvolvidas" value={experiencia.atividades} onChange={(e) => handleExperienciaChange(index, 'atividades', e.target.value)} />
               </Form.Group>
             </Col>
           </Row>
         ))}
-        <Button variant="secondary" onClick={adicionarExperiencia}>Adicionar Experiência</Button>
-        <Button variant="primary" type="submit"> Cadastrar </Button>
+        <div className="text-center">
+          <Button variant="secondary" style={{ marginTop: '10px', marginLeft: '5px' }} onClick={adicionarExperiencia}>
+            Adicionar Experiência
+          </Button>          
+          <Button variant="secondary" style={{ marginTop: '10px', marginLeft: '5px' }} onClick={cancelar}>
+            Cancelar
+          </Button>
+          <Button variant="primary" type="submit" style={{ marginTop: '10px', marginLeft: '5px' }}>
+            Cadastrar
+          </Button>
+        </div>
       </Form>
     </Container>
   );
