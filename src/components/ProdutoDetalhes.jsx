@@ -32,9 +32,6 @@ function ProdutoDetalhes() {
         setInformacao(dados.informacao);
     }
 
-
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 

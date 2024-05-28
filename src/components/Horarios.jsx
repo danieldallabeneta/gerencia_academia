@@ -44,12 +44,13 @@ export default function Horarios() {
                 <thead>
                     <tr>
                         <th style={{ width: '5%' }}>Id</th>
-                        <th style={{ width: '20%' }}>Atividade</th>
-                        <th style={{ width: '15%' }}>Professor</th>
+                        <th style={{ width: '15%' }}>Atividade</th>
+                        <th style={{ width: '10%' }}>Professor</th>
                         <th style={{ width: '15%' }}>Dia da Semana</th>
                         <th style={{ width: '10%' }}>Hora Início</th>
                         <th style={{ width: '10%' }}>Hora Término</th>
                         <th style={{ width: '10%' }}>Capacidade</th>
+                        <th style={{ width: '10%' }}>Disponibilidade</th>
                         <th style={{ width: '20%' }}>Ações</th>
                     </tr>
                 </thead>
@@ -64,6 +65,7 @@ export default function Horarios() {
                             <td>{horario.horaInicio}</td>
                             <td>{horario.horaTermino}</td>
                             <td>{horario.capacidade}</td>
+                            <td>{horario.capacidade - horario.consumo}</td>
                             <td>
                                 <Button variant="primary" onClick={() => visualizarHorario(horario.id)}>Ver +</Button>
                                 <Button variant="danger" onClick={() => handleDelete(horario.id)} style={{ marginLeft: '10px' }}>Excluir</Button>

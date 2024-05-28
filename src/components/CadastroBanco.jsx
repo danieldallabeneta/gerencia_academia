@@ -44,7 +44,9 @@ const CadastroBanco = () => {
 
     return (
         <Container fluid>
-            <h3>Cadastro de Bancos</h3>
+            <div className="text-center">
+                <h3>Cadastro de Bancos</h3>
+            </div>
             <Form onSubmit={handleSubmit}>
                 <Row>
                     <Col md={6}>

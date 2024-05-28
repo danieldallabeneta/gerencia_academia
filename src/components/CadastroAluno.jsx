@@ -281,7 +281,9 @@ function CadastroAluno() {
         <Form>
             <div className="dadosPessoais">
                 <div className="pessoa">
-                    <h4>Dados Pessoais</h4>
+                    <div className="text-center">
+                        <h3>Dados Pessoais</h3>
+                    </div>
                     <Row className="mb-2">
                         <FormGroup as={Col} className="mb-2" controlId="formGridNome">
                             <Form.Label>Nome Completo</Form.Label>
@@ -319,8 +321,8 @@ function CadastroAluno() {
                 </div>
             </div>
             <br />
-            <div className="endereco">
-                <h4>Dados Residenciais</h4>
+            <div className="text-center">
+                <h3>Dados Residenciais</h3>
             </div>
             <br />
             <div className="dadosPessoais">
@@ -354,8 +356,8 @@ function CadastroAluno() {
                 </Row>
             </div>
             <br />
-            <div className="endereco">
-                <h4>Questionário</h4>
+            <div className="text-center">
+                <h3>Questionário</h3>
             </div>
             <br />
             <div className="dadosPessoais">

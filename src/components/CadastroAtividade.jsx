@@ -32,11 +32,11 @@ function CadastroAtividade() {
         e.preventDefault();
 
         const atividade = {
-            nome:nome,
+            nome: nome,
             professor: parseInt(professor),
             local: local,
             descricao: descricao,
-            loja:loja
+            loja: loja
         };
 
         await registerAtividadeApi(atividade);
@@ -44,13 +44,15 @@ function CadastroAtividade() {
         navigate("/atividade");
     }
 
-    const onClickCancelar = ()=>{
+    const onClickCancelar = () => {
         navigate("/atividade");
     }
 
     return (
         <Container fluid>
-            <h3>Cadastro de Atividades</h3>
+            <div className="text-center">
+                <h3>Cadastro de Atividade</h3>
+            </div>
             <Form onSubmit={handleSubmitAtividade}>
                 <Row>
                     <Col>
@@ -89,7 +91,7 @@ function CadastroAtividade() {
                     <Button variant="primary" type="submit" style={{ marginTop: '10px' }}>
                         Cadastrar
                     </Button>
-                    <Button variant="secondary" style={{ marginTop: '10px', marginLeft : '10px'}} onClick={onClickCancelar}>
+                    <Button variant="secondary" style={{ marginTop: '10px', marginLeft: '10px' }} onClick={onClickCancelar}>
                         Cancelar
                     </Button>
                 </div>

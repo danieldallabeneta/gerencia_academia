@@ -35,7 +35,9 @@ function CadastroProduto() {
 
     return (
         <Container fluid>
-            <h3>Cadastro de Produto</h3>
+            <div className="text-center">
+                <h3>Cadastro de Produto</h3>
+            </div>
             <Form onSubmit={handleSubmit}>
                 <Row>
                     <Col>

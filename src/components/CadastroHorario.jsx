@@ -55,8 +55,8 @@ const CadastroHorario = () => {
         const horarioNew = JSON.stringify(horarios);
         const horarioAux = {
             atividade: atividade,
-            loja:loja,
-            horarios:horarioNew
+            loja: loja,
+            horarios: horarioNew
         }
 
         await registerHorarioApi(horarioAux);
@@ -69,7 +69,9 @@ const CadastroHorario = () => {
 
     return (
         <Container fluid>
-            <h3>Cadastro de Horários</h3>
+            <div className="text-center">
+                <h3>Cadastro de Horários</h3>
+            </div>
             <Form onSubmit={handleSubmit}>
                 <Row>
                     <Col>
@@ -117,7 +119,7 @@ const CadastroHorario = () => {
                             <Col>
                                 <Form.Group controlId='formCapacidade'>
                                     <Form.Label>Informe a Capacidade do Horário</Form.Label>
-                                    <Form.Control type="number" required value={hora.capacidade} onChange={(e) => handleHorarioChange(index, 'capacidade',e.target.value)} />
+                                    <Form.Control type="number" required value={hora.capacidade} onChange={(e) => handleHorarioChange(index, 'capacidade', e.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>

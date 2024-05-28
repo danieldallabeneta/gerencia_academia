@@ -77,10 +77,13 @@ const CadastroProfissional = () => {
 
   return (
     <Container fluid>
+      <div className="text-center">
+        <h4>Cadastro de Profissionais</h4>
+      </div>
       <Form onSubmit={handleSubmit}>
-
-        {/* Dados Principais */}
-        <h3>Dados Principais</h3>
+        <div className="text-center">
+          <h4>Dados Principais</h4>
+        </div>
         <Row>
           <Col>
             <Form.Group controlId="formNome">
@@ -110,7 +113,9 @@ const CadastroProfissional = () => {
             </Form.Group>
           </Col>
         </Row>
-        <h3>Contato</h3>
+        <div className="text-center">
+          <h4>Contato</h4>
+        </div>
         <Row>
           <Col>
             <Form.Group controlId="formEmail">
@@ -131,7 +136,9 @@ const CadastroProfissional = () => {
             </Form.Group>
           </Col>
         </Row>
-        <h3>Endereço</h3>
+        <div className="text-center">
+          <h4>Endereço</h4>
+        </div>
         <Row>
           <Col>
             <Form.Group controlId="formRua">
@@ -172,7 +179,9 @@ const CadastroProfissional = () => {
             </Form.Group>
           </Col>
         </Row>
-        <h3>Experiência Profissional</h3>
+        <div className="text-center">
+          <h4>Experiência Profissional</h4>
+        </div>
         {experiencias.map((experiencia, index) => (
           <Row key={index}>
             <Col>
@@ -204,7 +213,7 @@ const CadastroProfissional = () => {
         <div className="text-center">
           <Button variant="secondary" style={{ marginTop: '10px', marginLeft: '5px' }} onClick={adicionarExperiencia}>
             Adicionar Experiência
-          </Button>          
+          </Button>
           <Button variant="secondary" style={{ marginTop: '10px', marginLeft: '5px' }} onClick={cancelar}>
             Cancelar
           </Button>

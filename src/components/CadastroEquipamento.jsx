@@ -54,10 +54,16 @@ const CadastroEquipamento = () => {
     await registerEquipamentoApi(equipamento);
     navigate("/equipamento");
   };
+  
+  function cancelar() {
+    navigate("/equipamento");
+  }
 
   return (
     <Container fluid>
-      <h3>Cadastro de Equipamento</h3>
+      <div className="text-center">
+        <h3>Cadastro de Equipamento</h3>
+      </div>
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col md={5}>
@@ -151,6 +157,9 @@ const CadastroEquipamento = () => {
         <div className="text-center">
           <Button variant="primary" type="submit" style={{ marginTop: '10px' }}>
             Cadastrar
+          </Button>
+          <Button variant="secondary" style={{ marginTop: '10px', marginLeft: '5px' }} onClick={cancelar}>
+            Cancelar
           </Button>
         </div>
       </Form>

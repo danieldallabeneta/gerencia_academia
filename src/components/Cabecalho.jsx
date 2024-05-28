@@ -38,6 +38,7 @@ function Cabecalho() {
                   <NavDropdown.Item onClick={(e) => (navigate("/produtos"))}>Produto</NavDropdown.Item>
                 </NavDropdown>
               )}
+              {selecionado && nome && (<Nav.Link onClick={(e) => (navigate("/matriculas"))}>Matricula</Nav.Link>)}
             </Nav>
           </Navbar.Collapse>
           <Navbar.Collapse className="justify-content-end">

@@ -39,6 +39,7 @@ export const atualizaAtividadeApi = (atividade) => clienteApi.put(`/atividade`,a
 
 /* Rest de Horarios */
 export const obterHorariosApi = (id) => clienteApi.get(`/horarios/${id}`);
+export const obterHorariosCapacidadeApi = (id) => clienteApi.get(`/horariosCap/${id}`);
 export const obterHorarioApi = (id) => clienteApi.get(`/horario/${id}`);
 export const registerHorarioApi = (horario) => clienteApi.post(`/horario`,horario);
 export const deleteHorarioApi= (id) => clienteApi.delete(`/horario/${id}`);
@@ -65,3 +66,14 @@ export const obterProdutosApi= (id) => clienteApi.get(`/products/${id}`);
 export const obterProdutoApi= (id) => clienteApi.get(`/product/${id}`);
 export const deleteProdutoApi= (id) => clienteApi.delete(`/product/${id}`);
 export const atualizaProdutoApi = (produto) => clienteApi.put(`/product`,produto);
+
+/* Rest de Matricula */
+export const registerMatriculaApi = (matricula) => clienteApi.post(`/matricula`,matricula);
+export const obterMatriculasApi= (id) => clienteApi.get(`/matriculas/${id}`);
+export const obterMatriculaApi= (id) => clienteApi.get(`/matricula/${id}`);
+export const deleteMatriculaApi= (id) => clienteApi.delete(`/matricula/${id}`);
+export const atualizaMatriculaApi = (matricula) => clienteApi.put(`/matricula`,matricula);
+
+/* Rest de Matricula Atividade*/
+export const registerMatriculaAtividadeApi = (matriculaAtividade) => clienteApi.post(`/matriculaAtividade`, matriculaAtividade);
+export const obterMatriculaAtividadeApi= (id) => clienteApi.get(`/matriculaAtividade/${id}`);
