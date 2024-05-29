@@ -62,7 +62,7 @@ const CadastroEquipamento = () => {
   return (
     <Container fluid>
       <div className="text-center">
-        <h3>Cadastro de Equipamento</h3>
+        <h4>Cadastro de Equipamento</h4>
       </div>
       <Form onSubmit={handleSubmit}>
         <Row>

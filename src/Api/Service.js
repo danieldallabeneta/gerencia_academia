@@ -77,3 +77,10 @@ export const atualizaMatriculaApi = (matricula) => clienteApi.put(`/matricula`,m
 /* Rest de Matricula Atividade*/
 export const registerMatriculaAtividadeApi = (matriculaAtividade) => clienteApi.post(`/matriculaAtividade`, matriculaAtividade);
 export const obterMatriculaAtividadeApi= (id) => clienteApi.get(`/matriculaAtividade/${id}`);
+
+/* Rest de Caixa */
+export const registerCaixaApi = (caixa) => clienteApi.post(`/caixa`,caixa);
+export const obterCaixasApi= (id) => clienteApi.get(`/caixas/${id}`);
+export const obterCaixaApi= (id) => clienteApi.get(`/caixa/${id}`);
+export const deleteCaixaApi= (id) => clienteApi.delete(`/caixa/${id}`);
+export const atualizaCaixaApi = (caixa) => clienteApi.put(`/caixa`,caixa);

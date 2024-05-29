@@ -32,6 +32,8 @@ import Matricula from "./components/Matricula";
 import CadastroMatricula from "./components/CadastroMatricula";
 import MatriculaDetalhes from "./components/MatriculaDetalhes";
 import MatriculaAtividades from "./components/MatriculaAtividades";
+import Caixas from "./components/Caixas";
+import CadastroCaixa from "./components/CadastroCaixa";
 
 function HomePage() {
 
@@ -80,11 +82,13 @@ function HomePage() {
                                     {<Route path="/produtos" element={<AuthenticateRoute><Produtos/></AuthenticateRoute>}></Route>}
                                     {<Route path="/produto/cadastro" element={<AuthenticateRoute><CadastroProduto/></AuthenticateRoute>}></Route>}
                                     {<Route path="/produtoDetalhes/:id" element={<AuthenticateRoute><ProdutoDetalhes/></AuthenticateRoute>}></Route>}
-
                                     {<Route path="/matriculas" element={<AuthenticateRoute><Matricula/></AuthenticateRoute>}></Route>}
                                     {<Route path="/matricula/cadastro" element={<AuthenticateRoute><CadastroMatricula/></AuthenticateRoute>}></Route>}
                                     {<Route path="/matriculaDetalhes/:id" element={<AuthenticateRoute><MatriculaDetalhes/></AuthenticateRoute>}></Route>}
                                     {<Route path="/matriculaAtividades/:id" element={<AuthenticateRoute><MatriculaAtividades/></AuthenticateRoute>}></Route>}
+
+                                    {<Route path="/caixas" element={<AuthenticateRoute><Caixas/></AuthenticateRoute>}></Route>}
+                                    {<Route path="/caixa/cadastro" element={<AuthenticateRoute><CadastroCaixa/></AuthenticateRoute>}></Route>}
 
                                 </Routes>
                             </div>
