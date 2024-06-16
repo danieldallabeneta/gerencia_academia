@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 const EquipamentoDetalhes = () => {
     const autCtx = useAutCtx();
     const idLoja = autCtx.lojaId;
-    let navigate = useNavigate();
+    const navigate = useNavigate();
     const [codigo, setCodigo] = useState('');
     const [nome, setNome] = useState('');
     const [tipo, setTipo] = useState('');

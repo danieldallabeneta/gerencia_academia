@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { registerAlunoApi } from "../Api/Service";
-import { Button, Col, Form, FormGroup, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, FormGroup, Row } from "react-bootstrap";
 import "./CadastroAluno.css";
 import InputMask from 'react-input-mask';
 import { useNavigate } from "react-router-dom";
@@ -278,172 +278,178 @@ function CadastroAluno() {
     }
 
     return (
-        <Form>
-            <div className="dadosPessoais">
-                <div className="pessoa">
-                    <div className="text-center">
-                        <h3>Dados Pessoais</h3>
+        <Container fluid>
+            <div className="text-center">
+                <h3>Cadastro de Aluno</h3>
+            </div>
+            <Form>
+                <div className="dadosPessoais">
+                    <div className="pessoa">
+                        <div className="text-center">
+                            <h3>Dados Pessoais</h3>
+                        </div>
+                        <Row className="mb-2">
+                            <FormGroup as={Col} className="mb-2" controlId="formGridNome">
+                                <Form.Label>Nome Completo</Form.Label>
+                                <Form.Control type="text" placeholder="Nome Completo" value={nome} onChange={handlerNome} />
+                            </FormGroup>
+                            <FormGroup as={Col} className="mb-2" controlId="formGridDataNascimento">
+                                <Form.Label>Data de Nascimento</Form.Label>
+                                <Form.Control type="date" value={dataNascimento} onChange={handlerDataNascimento} />
+                            </FormGroup>
+                            <FormGroup as={Col} className="mb-2" controlId="formGridSexo">
+                                <Form.Label>Sexo</Form.Label>
+                                <Form.Select size="md" value={sexo} onChange={handlerSexo} >
+                                    <option value='1'>Masculino</option>
+                                    <option value='2'>Feminino</option>
+                                </Form.Select>
+                            </FormGroup>
+                            <FormGroup as={Col} className="mb-2" controlId="formGridAtivo">
+                                <Form.Label>Ativo</Form.Label>
+                                <Form.Select size="md" value={ativo} onChange={handlerAtivo}>
+                                    <option value='1'>Ativo</option>
+                                    <option value='0'>Inativo</option>
+                                </Form.Select>
+                            </FormGroup>
+                        </Row>
+                        <Row>
+                            <FormGroup as={Col} className="mb-2" controlId="formGridEmail">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control type="email" placeholder="E-mail" value={email} onChange={handlerEmail} />
+                            </FormGroup>
+                            <FormGroup as={Col} className="mb-2" controlId="formGridCelular">
+                                <Form.Label>Celular</Form.Label>
+                                <InputMask mask="(99) 99999-9999" maskChar="_" alwaysShowMask={true} className="form-control" value={celular} onChange={handlerCelular} />
+                            </FormGroup>
+                        </Row>
                     </div>
+                </div>
+                <br />
+                <div className="text-center">
+                    <h3>Dados Residenciais</h3>
+                </div>
+                <br />
+                <div className="dadosPessoais">
                     <Row className="mb-2">
-                        <FormGroup as={Col} className="mb-2" controlId="formGridNome">
-                            <Form.Label>Nome Completo</Form.Label>
-                            <Form.Control type="text" placeholder="Nome Completo" value={nome} onChange={handlerNome} />
+                        <FormGroup as={Col} controlId="formGridRua">
+                            <Form.Label>Rua</Form.Label>
+                            <Form.Control type="text" placeholder="Rua" value={rua} onChange={handlerRua} />
                         </FormGroup>
-                        <FormGroup as={Col} className="mb-2" controlId="formGridDataNascimento">
-                            <Form.Label>Data de Nascimento</Form.Label>
-                            <Form.Control type="date" value={dataNascimento} onChange={handlerDataNascimento} />
-                        </FormGroup>
-                        <FormGroup as={Col} className="mb-2" controlId="formGridSexo">
-                            <Form.Label>Sexo</Form.Label>
-                            <Form.Select size="md" value={sexo} onChange={handlerSexo} >
-                                <option value='1'>Masculino</option>
-                                <option value='2'>Feminino</option>
-                            </Form.Select>
-                        </FormGroup>
-                        <FormGroup as={Col} className="mb-2" controlId="formGridAtivo">
-                            <Form.Label>Ativo</Form.Label>
-                            <Form.Select size="md" value={ativo} onChange={handlerAtivo}>
-                                <option value='1'>Ativo</option>
-                                <option value='0'>Inativo</option>
-                            </Form.Select>
+                        <FormGroup as={Col} controlId="formGridNumero">
+                            <Form.Label>Número</Form.Label>
+                            <Form.Control type="number" placeholder="Número Casa ou Apt" value={numero} onChange={handlerNumero} />
                         </FormGroup>
                     </Row>
-                    <Row>
-                        <FormGroup as={Col} className="mb-2" controlId="formGridEmail">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" placeholder="E-mail" value={email} onChange={handlerEmail} />
+                    <Row className="mb-2">
+                        <FormGroup as={Col} controlId="formGridBairro">
+                            <Form.Label>Bairro</Form.Label>
+                            <Form.Control type="text" placeholder="Bairro" value={bairro} onChange={handlerBairro} />
                         </FormGroup>
-                        <FormGroup as={Col} className="mb-2" controlId="formGridCelular">
-                            <Form.Label>Celular</Form.Label>
-                            <InputMask mask="(99) 99999-9999" maskChar="_" alwaysShowMask={true} className="form-control" value={celular} onChange={handlerCelular} />
+                        <FormGroup as={Col} controlId="formGridCidade">
+                            <Form.Label>Cidade</Form.Label>
+                            <Form.Control type="text" placeholder="Cidade" value={cidade} onChange={handlerCidade} />
+                        </FormGroup>
+                        <FormGroup as={Col} controlId="formGridCEP">
+                            <Form.Label>CEP</Form.Label>
+                            <InputMask mask="99999-999" maskChar="_" alwaysShowMask={true} className="form-control" value={cep} onChange={handlerCep} />
+                        </FormGroup>
+                        <FormGroup as={Col} controlId="formGridUF">
+                            <Form.Label>UF</Form.Label>
+                            <InputMask mask="aa" value={uf} onChange={handlerUF} maskChar={null} className="form-control" />
                         </FormGroup>
                     </Row>
                 </div>
-            </div>
-            <br />
-            <div className="text-center">
-                <h3>Dados Residenciais</h3>
-            </div>
-            <br />
-            <div className="dadosPessoais">
-                <Row className="mb-2">
-                    <FormGroup as={Col} controlId="formGridRua">
-                        <Form.Label>Rua</Form.Label>
-                        <Form.Control type="text" placeholder="Rua" value={rua} onChange={handlerRua} />
-                    </FormGroup>
-                    <FormGroup as={Col} controlId="formGridNumero">
-                        <Form.Label>Número</Form.Label>
-                        <Form.Control type="number" placeholder="Número Casa ou Apt" value={numero} onChange={handlerNumero} />
-                    </FormGroup>
-                </Row>
-                <Row className="mb-2">
-                    <FormGroup as={Col} controlId="formGridBairro">
-                        <Form.Label>Bairro</Form.Label>
-                        <Form.Control type="text" placeholder="Bairro" value={bairro} onChange={handlerBairro} />
-                    </FormGroup>
-                    <FormGroup as={Col} controlId="formGridCidade">
-                        <Form.Label>Cidade</Form.Label>
-                        <Form.Control type="text" placeholder="Cidade" value={cidade} onChange={handlerCidade} />
-                    </FormGroup>
-                    <FormGroup as={Col} controlId="formGridCEP">
-                        <Form.Label>CEP</Form.Label>
-                        <InputMask mask="99999-999" maskChar="_" alwaysShowMask={true} className="form-control" value={cep} onChange={handlerCep} />
-                    </FormGroup>
-                    <FormGroup as={Col} controlId="formGridUF">
-                        <Form.Label>UF</Form.Label>
-                        <InputMask mask="aa" value={uf} onChange={handlerUF} maskChar={null} className="form-control" />
-                    </FormGroup>
-                </Row>
-            </div>
-            <br />
-            <div className="text-center">
-                <h3>Questionário</h3>
-            </div>
-            <br />
-            <div className="dadosPessoais">
-                <Row>
-                    <FormGroup as={Col} controlId="formGridPossuiPlano">
-                        <Form.Label>Possui Plano de Saúde?</Form.Label>
-                        <Form.Select size="md" value={temPlanoSaude} onChange={handleToggleDisable}>
-                            <option value='0' >Não</option>
-                            <option value='1'>Sim</option>
-                        </Form.Select>
-                    </FormGroup>
-                    <FormGroup as={Col} controlId="formGridPlano">
-                        <Form.Label>Nome do Plano de Saúde</Form.Label>
-                        <Form.Control type="text" disabled={isDisabled} value={planoSaude} onChange={handlerPlanoSaude} />
-                    </FormGroup>
-                </Row>
-                <Row>
-                    <FormGroup as={Col} controlId="formGridPraticaEsporte">
-                        <Form.Label>Pratica algum esporte?</Form.Label>
-                        <Form.Select size="md" value={praticaEsporte} onChange={handlePraticaEsporte}>
-                            <option value='0'>Não</option>
-                            <option value='1'>Sim</option>
-                        </Form.Select>
-                    </FormGroup>
-                    <FormGroup as={Col} controlId="formGridEsporte">
-                        <Form.Label>Esporte Praticado</Form.Label>
-                        <Form.Control type="text" disabled={isDisabledEsporte} value={esporte} onChange={handlerEsporte} />
-                    </FormGroup>
+                <br />
+                <div className="text-center">
+                    <h3>Questionário</h3>
+                </div>
+                <br />
+                <div className="dadosPessoais">
+                    <Row>
+                        <FormGroup as={Col} controlId="formGridPossuiPlano">
+                            <Form.Label>Possui Plano de Saúde?</Form.Label>
+                            <Form.Select size="md" value={temPlanoSaude} onChange={handleToggleDisable}>
+                                <option value='0' >Não</option>
+                                <option value='1'>Sim</option>
+                            </Form.Select>
+                        </FormGroup>
+                        <FormGroup as={Col} controlId="formGridPlano">
+                            <Form.Label>Nome do Plano de Saúde</Form.Label>
+                            <Form.Control type="text" disabled={isDisabled} value={planoSaude} onChange={handlerPlanoSaude} />
+                        </FormGroup>
+                    </Row>
+                    <Row>
+                        <FormGroup as={Col} controlId="formGridPraticaEsporte">
+                            <Form.Label>Pratica algum esporte?</Form.Label>
+                            <Form.Select size="md" value={praticaEsporte} onChange={handlePraticaEsporte}>
+                                <option value='0'>Não</option>
+                                <option value='1'>Sim</option>
+                            </Form.Select>
+                        </FormGroup>
+                        <FormGroup as={Col} controlId="formGridEsporte">
+                            <Form.Label>Esporte Praticado</Form.Label>
+                            <Form.Control type="text" disabled={isDisabledEsporte} value={esporte} onChange={handlerEsporte} />
+                        </FormGroup>
 
-                </Row>
-                <Row>
-                    <Form.Label>Porque faz academia?</Form.Label>
-                </Row>
-                <Row>
-                    <FormGroup as={Col} controlId="formGridPorqueAcademia">
-                        {checkAcademia.map(checkbox => (
-                            <label key={checkbox.id} style={{ marginRight: '10px' }}>
-                                <input
-                                    type="checkbox"
-                                    checked={checkbox.checked || false} // Fix: handle undefined case
-                                    onChange={() => handleCheckboxChange(checkbox.id)}
-                                    style={{ marginRight: '5px' }}
-                                />
-                                {checkbox.label}
-                            </label>
-                        ))}
-                    </FormGroup>
-                </Row>
-                <Row>
-                    <FormGroup as={Col} controlId="formGridMotivoAcademia">
-                        <Form.Control type="text" disabled={isDisabledAcademia} value={motivoAcademia} onChange={handlerMotivoAcademia} />
-                    </FormGroup>
-                </Row>
-                <Row>
-                    <Form.Label>Como soube da Academia?</Form.Label>
-                </Row>
-                <Row>
-                    <FormGroup as={Col} controlId="formGridComoSoube">
-                        {checkIndicado.map(checkbox => (
-                            <label key={checkbox.id} style={{ marginRight: '10px' }}>
-                                <input
-                                    type="checkbox"
-                                    checked={checkbox.checked || false} // Fix: handle undefined case
-                                    onChange={() => handleCheckboxIndicado(checkbox.id)}
-                                    style={{ marginRight: '5px' }}
-                                />
-                                {checkbox.label}
-                            </label>
-                        ))}
-                    </FormGroup>
-                </Row>
-                <Row>
-                    <FormGroup as={Col} controlId="formGridAlunoAcademia">
-                        <Form.Control type="text" disabled={isDisabledIndicado} value={quemInformou} onChange={handlerQuemInformou} />
-                    </FormGroup>
-                </Row>
-            </div>
-            <div className="text-center">
-                <Button variant="primary" className="mb-2" style={{ marginTop: '10px' }} onClick={handleSubmitAluno}>
-                    Confirmar
-                </Button>
-                <Button variant="secondary" className="mb-2" style={{ marginTop: '10px', marginLeft: '5px' }} onClick={cancelar}>
-                    Cancelar
-                </Button>
-            </div>
-        </Form >
+                    </Row>
+                    <Row>
+                        <Form.Label>Porque faz academia?</Form.Label>
+                    </Row>
+                    <Row>
+                        <FormGroup as={Col} controlId="formGridPorqueAcademia">
+                            {checkAcademia.map(checkbox => (
+                                <label key={checkbox.id} style={{ marginRight: '10px' }}>
+                                    <input
+                                        type="checkbox"
+                                        checked={checkbox.checked || false} // Fix: handle undefined case
+                                        onChange={() => handleCheckboxChange(checkbox.id)}
+                                        style={{ marginRight: '5px' }}
+                                    />
+                                    {checkbox.label}
+                                </label>
+                            ))}
+                        </FormGroup>
+                    </Row>
+                    <Row>
+                        <FormGroup as={Col} controlId="formGridMotivoAcademia">
+                            <Form.Control type="text" disabled={isDisabledAcademia} value={motivoAcademia} onChange={handlerMotivoAcademia} />
+                        </FormGroup>
+                    </Row>
+                    <Row>
+                        <Form.Label>Como soube da Academia?</Form.Label>
+                    </Row>
+                    <Row>
+                        <FormGroup as={Col} controlId="formGridComoSoube">
+                            {checkIndicado.map(checkbox => (
+                                <label key={checkbox.id} style={{ marginRight: '10px' }}>
+                                    <input
+                                        type="checkbox"
+                                        checked={checkbox.checked || false} // Fix: handle undefined case
+                                        onChange={() => handleCheckboxIndicado(checkbox.id)}
+                                        style={{ marginRight: '5px' }}
+                                    />
+                                    {checkbox.label}
+                                </label>
+                            ))}
+                        </FormGroup>
+                    </Row>
+                    <Row>
+                        <FormGroup as={Col} controlId="formGridAlunoAcademia">
+                            <Form.Control type="text" disabled={isDisabledIndicado} value={quemInformou} onChange={handlerQuemInformou} />
+                        </FormGroup>
+                    </Row>
+                </div>
+                <div className="text-center">
+                    <Button variant="primary" className="mb-2" style={{ marginTop: '10px' }} onClick={handleSubmitAluno}>
+                        Confirmar
+                    </Button>
+                    <Button variant="secondary" className="mb-2" style={{ marginTop: '10px', marginLeft: '5px' }} onClick={cancelar}>
+                        Cancelar
+                    </Button>
+                </div>
+            </Form >
+        </Container>
+
     );
 }
 

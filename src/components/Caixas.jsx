@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAutCtx } from "../AutCtx";
 import { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
-import { deleteCaixaApi, obterCaixasApi } from "../Api/Service";
+import { deleteCaixaApi, fecharCaixaApi, obterCaixasApi, reabrirCaixaApi } from "../Api/Service";
 
 
 function Caixas() {
@@ -26,6 +26,16 @@ function Caixas() {
         navigate(`/caixaDetalhes/${id}`);
     }
 
+    const fecharCaixa = async (id) => {
+        await fecharCaixaApi(id);
+        navigate("/caixas")
+    }
+
+    const reabrirCaixa = async (id) => {
+        await reabrirCaixaApi(id);
+        navigate("/caixas")
+    }
+
     function novoCaixa() {
         navigate("/caixa/cadastro")
     }
@@ -47,12 +57,12 @@ function Caixas() {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th style={{ width: '5%' }}>Id</th>
-                        <th style={{ width: '30%' }}>Data</th>
+                        <th style={{ width: '7%' }}>Id</th>
+                        <th style={{ width: '20%' }}>Data</th>
                         <th style={{ width: '20%' }}>Valor Abertura</th>
                         <th style={{ width: '20%' }}>Valor Fechamento</th>
                         <th style={{ width: '10%' }}>Situação</th>
-                        <th style={{ width: '15%' }}>Ações</th>
+                        <th style={{ width: '23%' }}>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,8 +74,10 @@ function Caixas() {
                             <td>{caixa.valorFechamento}</td>
                             <td>{caixa.situacao == 1 ? 'Aberto' : 'Fechado'}</td>
                             <td>
-                                <Button variant="primary" onClick={() => visualizarCaixa(caixa.id)}>Ver +</Button>
-                                <Button variant="primary" onClick={() => visualizarCaixa(caixa.id)} style={{ marginLeft: '10px' }}>Vendas</Button>
+                                <Button variant="info" onClick={() => visualizarCaixa(caixa.id)}>Ver +</Button>
+                                <Button variant="success" onClick={() => visualizarCaixa(caixa.id)} style={{ marginLeft: '10px' }}>Vendas</Button>
+                                <Button variant="warning" onClick={() => fecharCaixa(caixa.id)} style={{ marginLeft: '10px' }}>Fechar</Button>
+                                <Button variant="primary" onClick={() => reabrirCaixa(caixa.id)} style={{ marginLeft: '10px' }}>Reabrir</Button>
                                 <Button variant="danger" onClick={() => handleDelete(caixa.id)} style={{ marginLeft: '10px' }}>Excluir</Button>
                             </td>
                         </tr>

@@ -1,28 +1,39 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAutCtx } from "../AutCtx";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { registerCaixaApi } from "../Api/Service";
+import { atualizaCaixaApi, obterCaixaApi } from "../Api/Service";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
-
-function CadastroCaixa() {
+function CaixaDetalhes() {
     const autCtx = useAutCtx();
     const idLoja = autCtx.lojaId;
     const navigate = useNavigate();
-    const [dataAtual, setDataAtual] = useState('');
+    const [codigo, setCodigo] = useState('');
+    const [data, setData] = useState('');
     const [valorAbertura, setValorAbertura] = useState('');
-    const [situacao, setSituacao] = useState(1);
-    useEffect(() => {
-        const obterDataAtual = () => {
-            const hoje = new Date();
-            const ano = hoje.getFullYear();
-            const mes = String(hoje.getMonth() + 1).padStart(2, '0');
-            const dia = String(hoje.getDate()).padStart(2, '0');
-            return `${ano}-${mes}-${dia}`;
-        };
+    const [valorFechamento, setValorFechamento] = useState('');
+    const [situacao, setSituacao] = useState('');
 
-        setDataAtual(obterDataAtual());
-    }, []);
+    const { id } = useParams();
+    useEffect(() => obterCaixa(id), [id]);
+
+    function obterCaixa(id) {
+        obterCaixaApi(id)
+            .then((resposta) => carregaDados(resposta))
+            .catch((erro) => console.log(erro));
+    }
+
+    function carregaDados(resposta) {
+        const dados = resposta.data;
+        console.log(dados);
+        setCodigo(dados.id);
+        setData(dados.data);
+        const valorAbertura = dados.valorAbertura.toString().replace(".", ",");
+        setValorAbertura(valorAbertura);
+        const valorFechamento = dados.valorFechamento.toString().replace(".", ",");
+        setValorFechamento(valorFechamento);
+        setSituacao(dados.situacao);
+    }
 
     const handleInputChange = (event) => {
         const rawValue = event.target.value;
@@ -42,16 +53,17 @@ function CadastroCaixa() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        const novoAbertura = valorAbertura.toString().replace(",", ".");
+        const novoFechamento = valorFechamento.toString().replace(",", ".");
         const caixa = {
-            data: dataAtual,
-            valorAbertura: parseFloat(valorAbertura),
-            valorFechamento: parseFloat(0),
+            id: id,
+            data: data,
+            valorAbertura: parseFloat(novoAbertura),
+            valorFechamento: parseFloat(novoFechamento),
             situacao: situacao,
             loja: idLoja
         };
-
-        await registerCaixaApi(caixa);
+        await atualizaCaixaApi(caixa);
         navigate("/caixas");
     };
 
@@ -62,14 +74,20 @@ function CadastroCaixa() {
     return (
         <Container fluid>
             <div className="text-center">
-                <h4>Cadastro de Caixa</h4>
+                <h4>Detalhes de Caixa</h4>
             </div>
             <Form onSubmit={handleSubmit}>
                 <Row>
                     <Col>
+                        <Form.Group controlId="formId">
+                            <Form.Label>Id</Form.Label>
+                            <Form.Control type="number" disabled value={codigo} />
+                        </Form.Group>
+                    </Col>
+                    <Col>
                         <Form.Group controlId="formData" />
                         <Form.Label>Data</Form.Label>
-                        <Form.Control type="date" disabled value={dataAtual} onChange={(e) => setDataAtual(e.target.value)} />
+                        <Form.Control type="date" disabled value={data} onChange={(e) => setData(e.target.value)} />
                     </Col>
                     <Col>
                         <Form.Group controlId="formSituacao">
@@ -87,10 +105,16 @@ function CadastroCaixa() {
                             <Form.Control required type="text" placeholder="999.999,99" value={valorAbertura} onChange={handleInputChange} />
                         </Form.Group>
                     </Col>
+                    <Col>
+                        <Form.Group controlId="valorFechamento">
+                            <Form.Label>Valor de Fechamento (R$)</Form.Label>
+                            <Form.Control disabled type="text" placeholder="999.999,99" value={valorFechamento} onChange={handleInputChange} />
+                        </Form.Group>
+                    </Col>
                 </Row>
                 <div className="text-center">
                     <Button variant="primary" type="submit" style={{ marginTop: '10px' }}>
-                        Cadastrar
+                        Confirmar
                     </Button>
                     <Button variant="secondary" style={{ marginTop: '10px', marginLeft: '5px' }} onClick={cancelar}>
                         Cancelar
@@ -99,6 +123,7 @@ function CadastroCaixa() {
             </Form>
         </Container>
     )
+
 }
 
-export default CadastroCaixa;
+export default CaixaDetalhes;

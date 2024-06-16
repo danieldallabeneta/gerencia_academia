@@ -39,6 +39,9 @@ function Produtos() {
 
     return (
         <div>
+            <div className="text-center">
+                <h4>Consulta de Produtos</h4>
+            </div>   
             <Button variant="primary" onClick={() => novoProduto()} style={{ marginBottom: '10px' , marginLeft : '10px'}}>
                 Novo
             </Button>

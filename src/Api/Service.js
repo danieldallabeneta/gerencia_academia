@@ -84,3 +84,9 @@ export const obterCaixasApi= (id) => clienteApi.get(`/caixas/${id}`);
 export const obterCaixaApi= (id) => clienteApi.get(`/caixa/${id}`);
 export const deleteCaixaApi= (id) => clienteApi.delete(`/caixa/${id}`);
 export const atualizaCaixaApi = (caixa) => clienteApi.put(`/caixa`,caixa);
+export const fecharCaixaApi = (id) => clienteApi.put(`/caixa/fechar/${id}`);
+export const reabrirCaixaApi = (id) => clienteApi.put(`/caixa/reabrir/${id}`);
+
+/* Rest de Vendas */
+export const obterVendasApi= (id) => clienteApi.get(`/vendas/${id}`);
+export const deleteVendaApi= (id) => clienteApi.delete(`/venda/${id}`);
