@@ -26,6 +26,10 @@ function Caixas() {
         navigate(`/caixaDetalhes/${id}`);
     }
 
+    function vendasCaixa(id) {
+        navigate(`/caixa/vendas/${id}`);
+    }
+
     const fecharCaixa = async (id) => {
         await fecharCaixaApi(id);
         navigate("/caixas")
@@ -75,7 +79,7 @@ function Caixas() {
                             <td>{caixa.situacao == 1 ? 'Aberto' : 'Fechado'}</td>
                             <td>
                                 <Button variant="info" onClick={() => visualizarCaixa(caixa.id)}>Ver +</Button>
-                                <Button variant="success" onClick={() => visualizarCaixa(caixa.id)} style={{ marginLeft: '10px' }}>Vendas</Button>
+                                <Button variant="success" onClick={() => vendasCaixa(caixa.id)} style={{ marginLeft: '10px' }}>Vendas</Button>
                                 <Button variant="warning" onClick={() => fecharCaixa(caixa.id)} style={{ marginLeft: '10px' }}>Fechar</Button>
                                 <Button variant="primary" onClick={() => reabrirCaixa(caixa.id)} style={{ marginLeft: '10px' }}>Reabrir</Button>
                                 <Button variant="danger" onClick={() => handleDelete(caixa.id)} style={{ marginLeft: '10px' }}>Excluir</Button>

@@ -82,11 +82,19 @@ export const obterMatriculaAtividadeApi= (id) => clienteApi.get(`/matriculaAtivi
 export const registerCaixaApi = (caixa) => clienteApi.post(`/caixa`,caixa);
 export const obterCaixasApi= (id) => clienteApi.get(`/caixas/${id}`);
 export const obterCaixaApi= (id) => clienteApi.get(`/caixa/${id}`);
+export const obterCaixaDataApi= (data) => clienteApi.get(`/caixadata/${data}`);
 export const deleteCaixaApi= (id) => clienteApi.delete(`/caixa/${id}`);
 export const atualizaCaixaApi = (caixa) => clienteApi.put(`/caixa`,caixa);
 export const fecharCaixaApi = (id) => clienteApi.put(`/caixa/fechar/${id}`);
 export const reabrirCaixaApi = (id) => clienteApi.put(`/caixa/reabrir/${id}`);
 
 /* Rest de Vendas */
+export const registerVendaApi = (venda) => clienteApi.post(`/venda`,venda);
 export const obterVendasApi= (id) => clienteApi.get(`/vendas/${id}`);
 export const deleteVendaApi= (id) => clienteApi.delete(`/venda/${id}`);
+
+/* Rest de Vendas x Produtos*/
+export const obterVendaProdutosApi= (id) => clienteApi.get(`/venda/produtos/${id}`);
+
+/* Rest de Caixa x Vendas*/
+export const obterCaixaVendasApi= (id) => clienteApi.get(`/caixa/vendas/${id}`);

@@ -1,16 +1,19 @@
 import { Button, Col, Container, Form, FormCheck, Row } from "react-bootstrap";
 import { useAutCtx } from "../AutCtx";
 import { useEffect, useState } from "react";
-import { obterAlunosApi, obterProdutoApi, obterProdutosApi } from "../Api/Service";
+import { obterAlunosApi, obterCaixaDataApi, obterProdutoApi, obterProdutosApi, registerVendaApi } from "../Api/Service";
 import { useNavigate } from "react-router-dom";
 
 
 function CadastroVenda() {
     const autCtx = useAutCtx();
     const idLoja = autCtx.lojaId;
+    const user = autCtx.usuario;
     let navigate = useNavigate();
+    const [caixa, setCaixa] = useState('');
     const [data, setData] = useState('');
     const [aluno, setAluno] = useState('');
+    const [nome, setNome] = useState('');
     const [alunos, setAlunos] = useState([]);
     const [produto, setProduto] = useState('');
     const [descricaoProduto, setDescricaoProduto] = useState('');
@@ -26,18 +29,11 @@ function CadastroVenda() {
     const [produtosVenda, setProdutosVenda] = useState([]);
 
     useEffect(() => {
-        const obterDataAtual = () => {
-            const hoje = new Date();
-            const ano = hoje.getFullYear();
-            const mes = String(hoje.getMonth() + 1).padStart(2, '0');
-            const dia = String(hoje.getDate()).padStart(2, '0');
-            return `${ano}-${mes}-${dia}`;
-        };
-
         setData(obterDataAtual());
     }, []);
     useEffect(() => atualizarAlunos());
     useEffect(() => atualizarProdutos());
+    useEffect(() => atualizarCaixa());
 
     function atualizarAlunos() {
         obterAlunosApi(idLoja)
@@ -62,6 +58,22 @@ function CadastroVenda() {
             })
             .catch((erro) => console.log(erro));
     }
+
+    function atualizarCaixa() {
+        obterCaixaDataApi(obterDataAtual())
+            .then((resposta) => {
+                setCaixa(resposta.data.id);
+            })
+            .catch((erro) => console.log(erro));
+    }
+
+    const obterDataAtual = () => {
+        const hoje = new Date();
+        const ano = hoje.getFullYear();
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+        const dia = String(hoje.getDate()).padStart(2, '0');
+        return `${ano}-${mes}-${dia}`;
+    };
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -138,7 +150,7 @@ function CadastroVenda() {
 
     const adicionarProdutoVenda = () => {
         console.log(produto)
-        setProdutosVenda([...produtosVenda, { codigo: produto, descricao: descricaoProduto, valor: valorUnit, quantidade: qtdUnit, total: totalUnit }]);
+        setProdutosVenda([...produtosVenda, { produto: produto, descricao: descricaoProduto, valorUnitario: valorUnit, quantidade: qtdUnit, valorTotal: totalUnit }]);
 
         if (totalVenda == '') {
             setTotalVenda(totalUnit);
@@ -180,8 +192,36 @@ function CadastroVenda() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        var produtosFinal = [];
+        produtosVenda.forEach((produto) => {
+            var product = parseInt(produto.produto);
+            var novoValor = produto.valorUnitario.toString().replace(",", ".");
+            var valorUnitProduct = parseFloat(novoValor);
+            var quanti = parseInt(produto.quantidade);
+            var novoTotal = produto.valorTotal.toString().replace(",", ".");
+            var valotTotalProduct = parseFloat(novoTotal);
 
-        const vendasTotais = JSON.stringify(produtosVenda);
+            produtosFinal = [...produtosFinal, { produto: product, valorUnitario: valorUnitProduct, quantidade: quanti, valorTotal: valotTotalProduct }]
+        })
+
+        const vendasTotais = JSON.stringify(produtosFinal);
+
+        const totalValor = totalVenda.toString().replace(",", ".");
+
+        const vendaProduto = {
+            caixa: caixa,
+            aluno: aluno,
+            nome: nome,
+            tipoVenda: parseInt(tipoVenda),
+            tipoPagamento: parseInt(tipoPagamento),
+            data: data,
+            valorTotal: parseFloat(totalValor),
+            usuario: user,
+            loja: idLoja,
+            produtos: vendasTotais
+        };
+        await registerVendaApi(vendaProduto);
+        navigate("/vendas");
     }
 
     function cancelar() {
@@ -227,7 +267,7 @@ function CadastroVenda() {
                         <Col>
                             <Form.Group>
                                 <Form.Label>Visitante:</Form.Label>
-                                <Form.Control type="text" placeholder="Digite o nome do Visitante" />
+                                <Form.Control type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
                             </Form.Group>
                         </Col>
                     )}
@@ -253,7 +293,7 @@ function CadastroVenda() {
                     <Col>
                         <Form.Group controlId="formProduto">
                             <Form.Label>Produto:</Form.Label>
-                            <Form.Control required as="select" value={produto} onChange={handleProdutoChange}>
+                            <Form.Control as="select" value={produto} onChange={handleProdutoChange}>
                                 <option value="">Selecione</option>
                                 {produtos.map((produto) => (
                                     <option value={produto.id}>{produto.nome}</option>
@@ -293,7 +333,7 @@ function CadastroVenda() {
                         <Col>
                             <Form.Group controlId={`formCodigo-${index}`}>
                                 <Form.Label>Código</Form.Label>
-                                <Form.Control type="number" disabled value={product.codigo} onChange={(e) => handleProdutoVendaChange(index, 'codigo', e.target.value)} />
+                                <Form.Control type="number" disabled value={product.produto} onChange={(e) => handleProdutoVendaChange(index, 'produto', e.target.value)} />
                             </Form.Group>
                         </Col>
                         <Col>
@@ -305,7 +345,7 @@ function CadastroVenda() {
                         <Col>
                             <Form.Group controlId={`formValor-${index}`}>
                                 <Form.Label>Valor Unitário(R$)</Form.Label>
-                                <Form.Control disabled type="text" placeholder="999.999,99" value={product.valor} onChange={(e) => handleProdutoVendaChange(index, 'valor', e.target.value)} />
+                                <Form.Control disabled type="text" placeholder="999.999,99" value={product.valorUnitario} onChange={(e) => handleProdutoVendaChange(index, 'valorUnitario', e.target.value)} />
                             </Form.Group>
                         </Col>
                         <Col>
@@ -317,7 +357,7 @@ function CadastroVenda() {
                         <Col>
                             <Form.Group controlId={`formValor-${index}`}>
                                 <Form.Label>Valor Total(R$)</Form.Label>
-                                <Form.Control disabled type="text" placeholder="999.999,99" value={product.total} onChange={(e) => handleProdutoVendaChange(index, 'total', e.target.value)} />
+                                <Form.Control disabled type="text" placeholder="999.999,99" value={product.valorTotal} onChange={(e) => handleProdutoVendaChange(index, 'valorTotal', e.target.value)} />
                             </Form.Group>
                         </Col>
                         <Col md={1}>

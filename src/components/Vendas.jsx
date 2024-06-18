@@ -27,7 +27,7 @@ function Vendas() {
     }
 
     function visualizarVenda(id) {
-        navigate(`/produtoDetalhes/${id}`);
+        navigate(`/vendaDetalhes/${id}`);
     }
 
     const handleDelete = async (id) => {
@@ -61,7 +61,7 @@ function Vendas() {
                         <tr key={venda.id}>
                             <td>{venda.id}</td>
                             <td>{venda.data}</td>
-                            <td>{venda.nomeAluno == '' ? venda.cliente : venda.nomeAluno}</td>
+                            <td>{venda.nomeAluno == null ? venda.nome : venda.nomeAluno}</td>
                             <td>{venda.valorTotal}</td>
                             <td>
                                 <Button variant="primary" onClick={() => visualizarVenda(venda.id)}>Ver +</Button>

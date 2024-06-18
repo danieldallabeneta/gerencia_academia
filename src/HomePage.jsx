@@ -37,6 +37,8 @@ import CadastroCaixa from "./components/CadastroCaixa";
 import CaixaDetalhes from "./components/CaixaDetalhes";
 import Vendas from "./components/Vendas";
 import CadastroVenda from "./components/CadastroVenda";
+import VendaDetalhes from "./components/VendaDetalhes";
+import CaixaVendasDetalhes from "./components/CaixaVendasDetalhes";
 
 function HomePage() {
 
@@ -91,10 +93,12 @@ function HomePage() {
                                     {<Route path="/matriculaAtividades/:id" element={<AuthenticateRoute><MatriculaAtividades/></AuthenticateRoute>}></Route>}
                                     {<Route path="/caixas" element={<AuthenticateRoute><Caixas/></AuthenticateRoute>}></Route>}
                                     {<Route path="/caixa/cadastro" element={<AuthenticateRoute><CadastroCaixa/></AuthenticateRoute>}></Route>}
+                                    {<Route path="/caixa/vendas/:id" element={<AuthenticateRoute><CaixaVendasDetalhes/></AuthenticateRoute>}></Route>}
                                     {<Route path="/caixaDetalhes/:id" element={<AuthenticateRoute><CaixaDetalhes/></AuthenticateRoute>}></Route>}
 
                                     {<Route path="/vendas" element={<AuthenticateRoute><Vendas/></AuthenticateRoute>}></Route>}
                                     {<Route path="/venda/cadastro" element={<AuthenticateRoute><CadastroVenda/></AuthenticateRoute>}></Route>}
+                                    {<Route path="/vendaDetalhes/:id" element={<AuthenticateRoute><VendaDetalhes/></AuthenticateRoute>}></Route>}
 
                                 </Routes>
                             </div>
