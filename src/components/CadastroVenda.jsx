@@ -76,7 +76,7 @@ function CadastroVenda() {
     };
 
     const handleOptionChange = (event) => {
-        setSelectedOption(event.target.value);
+    setSelectedOption(event.target.value);
     };
 
     const handleTipoVendaChange = (event) => {
@@ -149,7 +149,6 @@ function CadastroVenda() {
     };
 
     const adicionarProdutoVenda = () => {
-        console.log(produto)
         setProdutosVenda([...produtosVenda, { produto: produto, descricao: descricaoProduto, valorUnitario: valorUnit, quantidade: qtdUnit, valorTotal: totalUnit }]);
 
         if (totalVenda == '') {
@@ -159,7 +158,6 @@ function CadastroVenda() {
             const novoValorTotal = totalVenda.toString().replace(",", ".");
             const novoValorUnit = totalUnit.toString().replace(",", ".");
             let valorFinal = (parseFloat(novoValorTotal) + parseFloat(novoValorUnit)).toFixed(2);
-            console.log(valorFinal);
             var a = valorFinal.toString().split('.')[1].length
             if (a == 1) {
                 const aux = valorFinal.toString() + '0';

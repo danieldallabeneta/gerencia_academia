@@ -71,6 +71,7 @@ export const atualizaProdutoApi = (produto) => clienteApi.put(`/product`,produto
 export const registerMatriculaApi = (matricula) => clienteApi.post(`/matricula`,matricula);
 export const obterMatriculasApi= (id) => clienteApi.get(`/matriculas/${id}`);
 export const obterMatriculaApi= (id) => clienteApi.get(`/matricula/${id}`);
+export const obterMatriculaAlunoApi= (id) => clienteApi.get(`/matricula/aluno/${id}`);
 export const deleteMatriculaApi= (id) => clienteApi.delete(`/matricula/${id}`);
 export const atualizaMatriculaApi = (matricula) => clienteApi.put(`/matricula`,matricula);
 
@@ -98,3 +99,7 @@ export const obterVendaProdutosApi= (id) => clienteApi.get(`/venda/produtos/${id
 
 /* Rest de Caixa x Vendas*/
 export const obterCaixaVendasApi= (id) => clienteApi.get(`/caixa/vendas/${id}`);
+
+/* Rest de Caixa x Vendas*/
+export const obterMensalidadesApi= (id) => clienteApi.get(`/mensalidades/${id}`);
+export const registerMensalidadeApi = (mensalidade) => clienteApi.post(`/mensalidade`,mensalidade);

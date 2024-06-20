@@ -39,6 +39,8 @@ import Vendas from "./components/Vendas";
 import CadastroVenda from "./components/CadastroVenda";
 import VendaDetalhes from "./components/VendaDetalhes";
 import CaixaVendasDetalhes from "./components/CaixaVendasDetalhes";
+import Mensalidades from "./components/Mensalidades";
+import CadastroMensalidade from "./components/CadastroMensalidade";
 
 function HomePage() {
 
@@ -99,6 +101,8 @@ function HomePage() {
                                     {<Route path="/vendas" element={<AuthenticateRoute><Vendas/></AuthenticateRoute>}></Route>}
                                     {<Route path="/venda/cadastro" element={<AuthenticateRoute><CadastroVenda/></AuthenticateRoute>}></Route>}
                                     {<Route path="/vendaDetalhes/:id" element={<AuthenticateRoute><VendaDetalhes/></AuthenticateRoute>}></Route>}
+                                    {<Route path="/mensalidades" element={<AuthenticateRoute><Mensalidades/></AuthenticateRoute>}></Route>}
+                                    {<Route path="/mensalidade/cadastro" element={<AuthenticateRoute><CadastroMensalidade/></AuthenticateRoute>}></Route>}
 
                                 </Routes>
                             </div>

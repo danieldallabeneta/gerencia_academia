@@ -53,7 +53,7 @@ function CaixaVendasDetalhes() {
                             <td>{venda.id}</td>
                             <td>{venda.nomeAluno == null ? 'Visitante' : 'Aluno'}</td>
                             <td>{venda.nomeAluno == null ? venda.nome : venda.nomeAluno}</td>
-                            <td>{venda.tipoVenda == 1 ? 'Bar' : 'Loja'}</td>
+                            <td>{venda.tipoVenda == 1 ? 'Bar' : venda.tipoVenda == 2 ? 'Loja' : 'Mensalidade'}</td>
                             <td>{venda.tipoPagamento == 1 ? 'À  Vista' : 'À Prazo'}</td>
                             <td>{venda.valorTotal}</td>
                         </tr>
